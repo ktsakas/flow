@@ -81,12 +81,13 @@ struct FlowNetwork {
                 }
                 
                 if  let jsonObject = response.result.value {
-                    print("JSON createplaylist \(jsonObject)")
+                    print("JSON createplaylist\n\(jsonObject)")
                     
                     let json = JSON(jsonObject)
                     
                     if let id = json["_id"].string {
                         playlist.id = id
+                        playlist.print_self()
                     } else {
                         assert(false, "missing _id field in json")
                     }

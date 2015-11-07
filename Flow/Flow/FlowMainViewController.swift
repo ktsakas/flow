@@ -12,7 +12,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let songCellID = "songCell"
     
-    var playlist = Playlist(name: "_", user: User(name: "_", id: "_"), id: "_")
+    var playlist = Playlist(name: "_", user: User(name: "_", email: "_"), id: "_")
     
     @IBOutlet var tableView: UITableView!
     
@@ -20,7 +20,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         // create playlist broaugh
-        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"valpe"), id: "playlistId1")
+        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", email:"valpe"), id: "playlistId1")
         
         
         playlist.songs = FlowNetwork.getFakeSongs()

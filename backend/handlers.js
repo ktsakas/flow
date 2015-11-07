@@ -9,7 +9,7 @@ exports.getAllPlaylistsForUser = function(req, res) {
 	console.log('received request to get all playlists');
 
 	Playlist.find({
-		user: req.params.userId
+		'user.email': req.params.userId
 	}, function(err, playlists) {
 		console.log('found playlists:', playlists);
 		res.json(playlists);
@@ -23,7 +23,7 @@ exports.getPlaylistForUser = function(req, res) {
 	console.log(req.params.playlistId, req.params.userId);
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		'user.email': req.params.user.name
+		'user.email': req.params.userId
 	}, function(err, playlist) {
 		console.log('found playlist:', playlist);
 		res.json(playlist);
@@ -60,7 +60,7 @@ exports.createPlaylist = function(req, res) {
 exports.addSong = function(req, res) {
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		user: req.params.userId
+		'user.email': req.params.userId
 	}, function(err, playlist) {
 		if (err) return {
 			error: "Failed to add song to playlist!"
@@ -86,7 +86,7 @@ exports.addSong = function(req, res) {
 exports.incrementCount = function(req, res) {
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		user: req.params.userId
+		'user.email': req.params.userId
 	}, function(err, playlist) {
 		if (err) return {
 			error: "Could not find the song!"
