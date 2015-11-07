@@ -7,6 +7,7 @@ var app = express();
 var PORT = 80;
 
 mongoose.connect('mongodb://localhost');//'localhost:27017');
+
 var Playlist = mongoose.model('Playlist', {
 	name: String,
 	user: String,
