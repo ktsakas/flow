@@ -61,8 +61,7 @@ class Playlist {
     func print_self() {
         print("\nPLAYLIST: name: \(name), user: \(user), id: \(id)")
         for song in songs {
-            print("\t\(song)")
-//            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+            print("  id: \(song.id), name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
         }
         print("END_PLAYLIST\n")
         

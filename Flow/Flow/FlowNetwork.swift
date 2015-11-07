@@ -9,6 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
+let apiUrl = "https://flow-backend-api.herokuapp.com"
 
 struct FlowNetwork {
     
@@ -44,8 +45,12 @@ struct FlowNetwork {
         return songsArray
     }
     
-    static func createPlaylist(playlist : Playlist) {
-        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists",
+    static func createPlaylist(playlist : Playlist, callback : Void -> Void) {
+        
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
+        print("createPlaylist path: \(path)")
+
+        Alamofire.request(.POST, path,
             parameters: ["name": playlist.name, "songs": []])
             .responseJSON(completionHandler: { response in
                 guard response.result.error == nil else {
@@ -70,11 +75,13 @@ struct FlowNetwork {
                         assert(false, "missing _id field in json")
                     }
                     
+                    callback()
+                    
                 }
             })
     }
     
-    static func makePlaylistUpdateHandler(playlist : Playlist) -> Response<AnyObject, NSError> -> Void {
+    static func makePlaylistUpdateHandler(playlist : Playlist, callback : Void -> Void) -> Response<AnyObject, NSError> -> Void {
         return { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
@@ -94,21 +101,21 @@ struct FlowNetwork {
                 
                 playlist.getSongsFromJson(JSON(jsonObject))
                 
-                //todo update playlist in view
+                callback()
             }
         }
     }
     
-    static func updatePlaylist(playlist : Playlist) {
-        let path = "users/\(playlist.user.id)/playlists/\(playlist.id)"
+    static func updatePlaylist(playlist : Playlist, callback : Void -> Void) {
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
         print("updatePlaylist path: \(path)")
         Alamofire.request(.GET, path)
-            .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist))
+            .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
     }
     
-    static func incrementVoteForSong(songId : String, playlist : Playlist) {
-        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
-            .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist))
+    static func incrementVoteForSong(songId : String, playlist : Playlist, callback : Void -> Void) {
+        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
+            .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
     }
 }

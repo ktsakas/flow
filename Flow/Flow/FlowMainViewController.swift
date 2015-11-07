@@ -27,14 +27,17 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         
         playlist.print_self()
         
-        print("is sorted: \(playlist.isSortedByVoteCount())")
-        print("contains duplicates: \(playlist.containsDuplicates())")
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
-        FlowNetwork.updatePlaylist(playlist)
+        FlowNetwork.createPlaylist(playlist, callback: {
+            print("done creating playlist")
+            FlowNetwork.updatePlaylist(self.playlist, callback: {
+                print("done updating playlist")
+            })
+        })
+        
         
         
     }
