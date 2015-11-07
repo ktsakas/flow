@@ -13,6 +13,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
 
   let songCellID = "songCell"
   var songsArray : Array<Song>?
+  var playlist : Playlist?
 
   @IBOutlet var tableView: UITableView!
 
@@ -62,6 +63,8 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     let votes = (songsArray?.count)! - indexPath.row
     songCell.voteCountLabel.text = "\(votes)"
 
+    songCell.songId = song.id
+    songCell.playlist = playlist!
 
     return songCell
 
