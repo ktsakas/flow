@@ -57,6 +57,6 @@ app.get('/:test', function (req, res) {
 	res.send('Hello World!');
 });
 
-app.listen(8080, function () {
+app.listen(PORT, function () {
 	console.log('Server listening on port: %s', PORT);
 });
