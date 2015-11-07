@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.get('/users/:userId/playlists', handlers.getAllPlaylistsForUser);
 
 // Get playlist for user
-app.get('users/:userId/playlists/:playlistId', handlers.getPlaylistForUser);
+app.get('/users/:userId/playlists/:playlistId', handlers.getPlaylistForUser);
 
 // Create playlist
 app.post('/users/:userId/playlists', handlers.createPlaylist);
