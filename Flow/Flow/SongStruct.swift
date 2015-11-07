@@ -9,8 +9,11 @@
 import Foundation
 
 struct Song {
+  var songId : String?
   var songName: String?
   var songArtist: String?
   var voteCount = 0
   var imageLink: String?
+  var songLink: String?
+
 }

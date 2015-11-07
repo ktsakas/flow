@@ -17,24 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nearby Flows" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doc-pJ-KaZ">
-                                <rect key="frame" x="248" y="72" width="104" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="0.84514885979729726" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blurryBackgroundS" translatesAutoresizingMaskIntoConstraints="NO" id="baA-yk-aPw">
-                                <rect key="frame" x="-343" y="-10" width="1032" height="840"/>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blurryBackgroundS" translatesAutoresizingMaskIntoConstraints="NO" id="fTi-Uv-kRZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-AO-HKq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-AO-HKq">
                                 <rect key="frame" x="0.0" y="109" width="600" height="491"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="cBR-7U-64a" customClass="FlowNameTableViewCell" customModule="Flow" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="flowCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="flowCell" rowHeight="76" id="cBR-7U-64a" customClass="FlowNameTableViewCell" customModule="Flow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cBR-7U-64a" id="pqb-eP-FZu">
@@ -81,9 +74,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nearby Flows" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiS-n3-pL2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nearby Flows" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiS-n3-pL2">
                                 <rect key="frame" x="186" y="73" width="228" height="28"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="4IY-h3-7cB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="0.84514885979999999" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -91,17 +87,44 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xKL-AO-HKq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2gz-sV-Pbg"/>
+                            <constraint firstItem="xKL-AO-HKq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6FQ-gc-bNt"/>
+                            <constraint firstItem="fTi-Uv-kRZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Crf-Yj-m9N"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fTi-Uv-kRZ" secondAttribute="bottom" id="DeM-eC-z0M"/>
+                            <constraint firstItem="xKL-AO-HKq" firstAttribute="top" secondItem="KiS-n3-pL2" secondAttribute="bottom" constant="8" id="Hsa-ny-iqT"/>
+                            <constraint firstItem="fTi-Uv-kRZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="I1n-gC-myg"/>
+                            <constraint firstItem="xKL-AO-HKq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KBr-vU-2Cn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xKL-AO-HKq" secondAttribute="bottom" id="Na0-aF-Zug"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xKL-AO-HKq" secondAttribute="bottom" id="Shx-9W-FY4"/>
+                            <constraint firstItem="KiS-n3-pL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xf9-W6-KAV"/>
+                            <constraint firstItem="KiS-n3-pL2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="9" id="b2n-8s-QL7"/>
+                            <constraint firstAttribute="trailing" secondItem="xKL-AO-HKq" secondAttribute="trailing" id="pQZ-EM-NCx"/>
+                            <constraint firstItem="fTi-Uv-kRZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qUS-KY-014"/>
+                            <constraint firstItem="xKL-AO-HKq" firstAttribute="top" secondItem="KiS-n3-pL2" secondAttribute="bottom" constant="8" id="uaG-Ka-LAJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2gz-sV-Pbg"/>
+                                <exclude reference="Hsa-ny-iqT"/>
+                                <exclude reference="pQZ-EM-NCx"/>
+                                <exclude reference="Shx-9W-FY4"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Vng-0Z-tUA"/>
+                    <connections>
+                        <outlet property="tableView" destination="xKL-AO-HKq" id="tms-NL-0l1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="418" y="-47"/>
         </scene>
-        <!--View Controller-->
+        <!--Flow Main View Controller-->
         <scene sceneID="KvN-2m-AyK">
             <objects>
-                <viewController id="3yV-d1-cM0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="flowMainController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3yV-d1-cM0" customClass="FlowMainViewController" customModule="Flow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gt0-rj-Pgv"/>
                         <viewControllerLayoutGuide type="bottom" id="L7y-KD-Ijb"/>
@@ -110,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blurryBackgroundS" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-sq-lZo">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blurryBackgroundS" translatesAutoresizingMaskIntoConstraints="NO" id="RIO-sq-lZo">
                                 <rect key="frame" x="-59" y="-9" width="713" height="751"/>
                                 <animations/>
                             </imageView>
@@ -119,7 +142,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="Fa8-mJ-XZe" customClass="SongTableViewCell" customModule="Flow" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="songCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" rowHeight="95" id="Fa8-mJ-XZe" customClass="SongTableViewCell" customModule="Flow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fa8-mJ-XZe" id="fEn-Yp-dcT">
@@ -202,15 +225,18 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="v2l-y5-Dzn" id="9mT-3o-T3i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD0-Pf-bk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1200" y="-47"/>
         </scene>
-        <!--View Controller-->
+        <!--Flow Add View Controller-->
         <scene sceneID="fka-fJ-rfr">
             <objects>
-                <viewController id="JQx-9g-eoz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="flowAddController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JQx-9g-eoz" customClass="FlowAddViewController" customModule="Flow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oMJ-bn-hps"/>
                         <viewControllerLayoutGuide type="bottom" id="fLG-OD-vmy"/>

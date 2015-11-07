@@ -11,23 +11,21 @@ import UIKit
 class SongTableViewCell: UITableViewCell {
 
   @IBOutlet var songImageView: UIImageView!
-
   @IBOutlet var songTitleLabel: UILabel!
-
   @IBOutlet var songArtistLabel: UILabel!
-
   @IBOutlet var voteCountLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+    // Configure the view for the selected state
+  }
+
   @IBAction func tappedUpvote(sender: AnyObject) {
   }
 
