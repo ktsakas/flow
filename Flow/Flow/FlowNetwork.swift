@@ -11,9 +11,10 @@ import SwiftyJSON
 
 struct FlowNetwork {
     
+    //!! assumes backend gives array sorted by votecount
     func getSongsForId(id : String) -> Array<Song> {
         
-        var songArray = Array<Song>()
+        var songs = Array<Song>()
         // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
         
         //taken from alamofire's github example
@@ -31,16 +32,38 @@ struct FlowNetwork {
                     //from swiftyJson's github example
                     let json = JSON(jsonObject);
                     
-                    let songs: Array<JSON> = json.array!
+                    let songJsons: Array<JSON> = json.array!
                     
-                    for songJson in songs {
-                        songArray.append(Song(json: songJson))
+                    for songJson in songJsons {
+                        songs.append(Song(json: songJson))
                     }
                     
                 }
         }
         
-        return songArray;
+        return songs;
+    }
+    
+    //running time O(n), but we can probably assume the playlist will be small enough for it not to matter
+    func incrementVoteForSong(songName : String, var songs : Array<Song>) {
+        for var i = 0; i < songs.count; i++ {
+            if (songs[i].name == songName) {
+                songs[i].incrementVoteCount()
+                
+                //ensure sort is preserved
+                while (i > 0) {
+                    if (songs[i - 1].voteCount >= songs[i].voteCount) {
+                        //then the array is properly sorted
+                        return
+                    }
+                    //otherwise swap the songs so that they are in the right order
+                    swap(&songs[i], &songs[i - 1])
+                    i--
+                }
+
+                return
+            }
+        }
     }
     
     //  func updateVoteForSong

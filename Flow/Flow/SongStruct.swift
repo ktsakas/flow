@@ -31,4 +31,8 @@ struct Song {
             voteCount: json["voteCount"].intValue,
             imageLink: json["imageLink"].string)
     }
+    
+    mutating func incrementVoteCount() {
+        voteCount++;
+    }
 }
