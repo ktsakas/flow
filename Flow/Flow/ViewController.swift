@@ -39,12 +39,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     print("selected FLOW brah")
 
-    let vc = storyboard?.instantiateViewControllerWithIdentifier("flowMainController") as! FlowMainViewController
+    //let vc = storyboard?.instantiateViewControllerWithIdentifier("flowMainController") as! FlowMainViewController
 
+<<<<<<< HEAD
     vc.playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"ktsakas"), id: "playlistId1")
+=======
+    //vc.playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"userIdValentin"), id: "playlistId1")
+    //let nvc = storyboard?.instantiateViewControllerWithIdentifier("flowNavigationController")
+    self.performSegueWithIdentifier("toFlowSegue", sender: self)
+>>>>>>> origin/master
 
-
-    self.presentViewController(vc, animated: true, completion: nil)
+    //self.presentViewController(nvc, animated: true, completion: nil)
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
