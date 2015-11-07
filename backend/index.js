@@ -8,9 +8,9 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var handlers = require('./handlers.js');
 
 var app = express();
-var PORT = 80;
+var PORT = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost'); //'localhost:27017');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
 var Playlist = mongoose.model('Playlist', {
 	name: String,
@@ -35,12 +35,10 @@ app.get('users/:userId/playlists/:playlistId', handlers.getPlalistForUser);
 app.post('/users/:userId/playlists', handlers.createPlaylist);
 
 // add a song to a playlist
-app.post('/users/:userId/playlists/:playlistId', handlers.addSong);
+app.put('/users/:userId/playlists/:playlistId', handlers.addSong);
 
 // increment the voteCount for a song in a playlist
-app.post('/users/:userId/playlists/:playlistId', handlers.incrementCount);
-
-
+app.put('/users/:userId/playlists/:playlistId/songs/:songId', handlers.incrementCount);
 
 app.get('/', function(req, res) {
 	// console.log(req.params.test);

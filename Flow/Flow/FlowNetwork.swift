@@ -40,9 +40,8 @@ struct FlowNetwork {
 
 
     //todo: ansynchronous, need a callback type of thing
-  func updatePlaylist(playlist : Playlist) {
-        Alamofire.request(.GET, "users/:userId/playlists/:playlistId",
-            parameters: ["userId": playlist.user, "playlistId": playlist.name])
+    func updatePlaylist(playlist : Playlist) {
+        Alamofire.request(.GET, "users/\(playlist.user.id)/playlists/\(playlist.id)", parameters: [:])
             .responseJSON { response in
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle it
@@ -67,9 +66,9 @@ struct FlowNetwork {
         }
     }
     
-    func incrementVoteForSong(songName : String, playlist : Playlist) {
-        Alamofire.request(.POST, "/users/:userId/playlists/:playlistId",
-            parameters: ["playlistId": playlist.name, "name": songName], encoding: .JSON)
+    func incrementVoteForSong(songId : String, playlist : Playlist) {
+        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)",
+            parameters: [:], encoding: .JSON)
             .responseJSON { response in
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle it
