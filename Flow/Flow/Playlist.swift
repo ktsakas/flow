@@ -21,6 +21,18 @@ class Playlist {
         self.id = id
     }
     
+    init(json : JSON) {
+        self.name = json["name"].stringValue
+        self.user = User(json: json["user"])
+        self.id = json["id"].stringValue
+        
+        assert(self.name != "", "empty name")
+        assert(self.id != "", "empty id")
+        
+        self.getSongsFromJson(json)
+        
+    }
+    
     func isSortedByVoteCount() -> Bool {
         for var i = 0; i < songs.count - 1; i++ {
             if (songs[i].voteCount < songs[i + 1].voteCount) {

@@ -8,8 +8,13 @@ var Song = exports.Song = mongoose.model('Song', {
 	imageURL: String
 });
 
+var User = exports.User = mongoose.model('User', {
+	name: String,
+	email: String
+});
+
 exports.Playlist = mongoose.model('Playlist', {
 	name: String,
-	user: String,
+	user: User,
 	songs: [Song]
 });

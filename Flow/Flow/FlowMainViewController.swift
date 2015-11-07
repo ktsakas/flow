@@ -13,13 +13,13 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let songCellID = "songCell"
     
-    var playlist = Playlist(name: "playlist1", user: User(name: "user1", id: "user1"), id: "playlist1")
+    var playlist = Playlist(name: "_", user: User(name: "_", id: "_"), id: "_")
     
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         //http tests
         
@@ -31,12 +31,19 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.reloadData()
         
-        FlowNetwork.createPlaylist(playlist, callback: {
-            print("done creating playlist")
-            FlowNetwork.updatePlaylist(self.playlist, callback: {
-                print("done updating playlist")
-            })
+        
+        
+        //        FlowNetwork.createPlaylist(playlist, callback: {
+        //            print("done creating playlist")
+        
+        FlowNetwork.getPlaylistsForUserId("ktsakas", callback: { playlists in
+            print("got playlists yay")
+            for playlist in playlists {
+                playlist.print_self()
+            }
         })
+        
+        //        })
         
         
         

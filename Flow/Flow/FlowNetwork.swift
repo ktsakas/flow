@@ -10,17 +10,37 @@ import Alamofire
 import SwiftyJSON
 
 let apiUrl = "https://flow-backend-api.herokuapp.com"
+//let apiUrl = "130.132.173.223:3000"
 
 struct FlowNetwork {
-    
-    func getSongsForPlaylistId(id : String) -> Array<Song> {
+    static func getPlaylistsForUserId(id : String, callback: Array<Playlist> -> Void) {
+        let path = "\(apiUrl)/users/\(id)/playlists"
+        print("path for getplaylists:\(path)")
         
-        let songArray = Array<Song>()
-        // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
-        
-        return songArray;
+        Alamofire.request(.GET, path)
+            .responseJSON(completionHandler: { response in
+                guard response.result.error == nil else {
+                    // got an error in getting the data, need to handle it
+                    print("error calling GET on \(path)")
+                    print(response.result.error!)
+                    return
+                }
+                
+                if  let jsonObject = response.result.value {
+                    print("JSON for getPlaylists \(jsonObject)")
+                    
+                    let json = JSON(jsonObject)
+                    
+                    if let playlistJsons = json.array {
+                        var playlists = Array<Playlist>()
+                        for playlistJson in playlistJsons {
+                            playlists.append(Playlist(json: playlistJson))
+                        }
+                        callback(playlists)
+                    }
+                }
+            })
     }
-    
     
     static func getSongsForPlaylistId(id : String) -> Array<Song> {
         
@@ -59,13 +79,9 @@ struct FlowNetwork {
                     print(response.result.error!)
                     return
                 }
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
                 
                 if  let jsonObject = response.result.value {
-                    print("JSONL \(jsonObject)")
+                    print("JSON createplaylist \(jsonObject)")
                     
                     let json = JSON(jsonObject)
                     
