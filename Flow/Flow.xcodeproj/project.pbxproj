@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		48C4E1431BEE56590061BC5B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4E1421BEE56590061BC5B /* Playlist.swift */; };
 		48C4E1451BEE660D0061BC5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4E1441BEE660D0061BC5B /* User.swift */; };
+		48C4E14F1BEEA4E40061BC5B /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4E14C1BEEA4E40061BC5B /* FBSDKCoreKit.framework */; };
+		48C4E1501BEEA4E40061BC5B /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4E14D1BEEA4E40061BC5B /* FBSDKLoginKit.framework */; };
+		48C4E1511BEEA4E40061BC5B /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4E14E1BEEA4E40061BC5B /* FBSDKShareKit.framework */; };
 		A7A61AC71BED846200BD8A22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A61AC61BED846200BD8A22 /* AppDelegate.swift */; };
 		A7A61AC91BED846200BD8A22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A61AC81BED846200BD8A22 /* ViewController.swift */; };
 		A7A61ACC1BED846200BD8A22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A61ACA1BED846200BD8A22 /* Main.storyboard */; };
@@ -46,6 +49,10 @@
 /* Begin PBXFileReference section */
 		48C4E1421BEE56590061BC5B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		48C4E1441BEE660D0061BC5B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		48C4E14C1BEEA4E40061BC5B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		48C4E14D1BEEA4E40061BC5B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		48C4E14E1BEEA4E40061BC5B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		48C4E1521BEEA90B0061BC5B /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
 		73773DF77E5E6573AFABD850 /* Pods-Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.debug.xcconfig"; sourceTree = "<group>"; };
 		80A108849B260A449FAE8793 /* Pods-Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.release.xcconfig"; sourceTree = "<group>"; };
 		A7A61AC31BED846200BD8A22 /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +83,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C4E1511BEEA4E40061BC5B /* FBSDKShareKit.framework in Frameworks */,
 				DF0FC3FC4EEB2B5DE4FEC114 /* Pods_Flow.framework in Frameworks */,
+				48C4E14F1BEEA4E40061BC5B /* FBSDKCoreKit.framework in Frameworks */,
+				48C4E1501BEEA4E40061BC5B /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +119,9 @@
 		83AD466BC570CC65E8D1B71B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48C4E14C1BEEA4E40061BC5B /* FBSDKCoreKit.framework */,
+				48C4E14D1BEEA4E40061BC5B /* FBSDKLoginKit.framework */,
+				48C4E14E1BEEA4E40061BC5B /* FBSDKShareKit.framework */,
 				F49D56284A67237C83E71882 /* Pods_Flow.framework */,
 			);
 			name = Frameworks;
@@ -151,6 +164,7 @@
 				A7A61AD21BED846200BD8A22 /* Info.plist */,
 				48C4E1421BEE56590061BC5B /* Playlist.swift */,
 				48C4E1441BEE660D0061BC5B /* User.swift */,
+				48C4E1521BEEA90B0061BC5B /* Bridge-Header.h */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -517,10 +531,15 @@
 			baseConfigurationReference = 73773DF77E5E6573AFABD850 /* Pods-Flow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Flow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Valpe-Technologies.Flow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridge-Header.h";
 			};
 			name = Debug;
 		};
@@ -529,10 +548,15 @@
 			baseConfigurationReference = 80A108849B260A449FAE8793 /* Pods-Flow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Flow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Valpe-Technologies.Flow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridge-Header.h";
 			};
 			name = Release;
 		};

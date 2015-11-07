@@ -12,7 +12,7 @@ exports.Playlist = mongoose.model('Playlist', {
 	name: String,
 	user: {
 		name: String,
-		email: String
+		id: String
 	},
 	songs: [Song]
 });

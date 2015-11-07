@@ -2,14 +2,12 @@ var models = require('./models.js');
 var Playlist = models.Playlist;
 var Song = models.Song;
 
-//TODO how to do body vs params?
-//TODO what is playlist id? name?
 
 exports.getAllPlaylistsForUser = function(req, res) {
 	console.log('received request to get all playlists');
 
 	Playlist.find({
-		'user.email': req.params.userId
+		'user.id': req.params.userId
 	}, function(err, playlists) {
 		console.log('found playlists:', playlists);
 		res.json(playlists);
@@ -23,7 +21,7 @@ exports.getPlaylistForUser = function(req, res) {
 	console.log(req.params.playlistId, req.params.userId);
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		'user.email': req.params.userId
+		'user.id': req.params.userId
 	}, function(err, playlist) {
 		console.log('found playlist:', playlist);
 		res.json(playlist);
@@ -42,7 +40,7 @@ exports.createPlaylist = function(req, res) {
 		name: req.body.name,
 		user: {
 			name: req.body.userName,
-			email: req.params.userId
+			id: req.params.userId
 		},
 		songs: songs
 	}, function(err, playlist) {
@@ -60,7 +58,7 @@ exports.createPlaylist = function(req, res) {
 exports.addSong = function(req, res) {
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		'user.email': req.params.userId
+		'user.id': req.params.userId
 	}, function(err, playlist) {
 		if (err) return {
 			error: "Failed to add song to playlist!"
@@ -86,7 +84,7 @@ exports.addSong = function(req, res) {
 exports.incrementCount = function(req, res) {
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		'user.email': req.params.userId
+		'user.id': req.params.userId
 	}, function(err, playlist) {
 		if (err) return {
 			error: "Could not find the song!"

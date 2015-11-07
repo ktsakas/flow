@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 let apiUrl = "https://flow-backend-api.herokuapp.com"
-//let apiUrl = "130.132.173.223:3000"
+//let apiUrl = "localhost:3000"
 
 struct FlowNetwork {
     static func getPlaylistsForUserId(id : String, callback: Array<Playlist> -> Void) {
@@ -67,7 +67,7 @@ struct FlowNetwork {
     
     static func createPlaylist(playlist : Playlist, callback : Void -> Void) {
         
-        let path = "\(apiUrl)/users/\(playlist.user.email)/playlists"
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
         print("createPlaylist path: \(path)")
 
         Alamofire.request(.POST, path,
@@ -88,6 +88,10 @@ struct FlowNetwork {
                     if let id = json["_id"].string {
                         playlist.id = id
                         playlist.print_self()
+                        
+                        print("parsing json:")
+                        Playlist(json: json).print_self()
+                        
                     } else {
                         assert(false, "missing _id field in json")
                     }
@@ -124,14 +128,14 @@ struct FlowNetwork {
     }
     
     static func updatePlaylist(playlist : Playlist, callback : Void -> Void) {
-        let path = "\(apiUrl)/users/\(playlist.user.email)/playlists/\(playlist.id)"
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
         print("updatePlaylist path: \(path)")
         Alamofire.request(.GET, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
     }
     
     static func incrementVoteForSong(songId : String, playlist : Playlist, callback : Void -> Void) {
-        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.email)/playlists/\(playlist.id)/songs/\(songId)")
+        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
     }
