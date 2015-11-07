@@ -56,4 +56,13 @@ class Playlist {
             assert(false, "json object is not an array")
         }
     }
+    
+    func print_self() {
+        print("\nPLAYLIST: name: \(name), user: \(user.name), id: \(id)")
+        for song in songs {
+            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+        }
+        print("END_PLAYLIST\n")
+        
+    }
 }
