@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
-var PORT = 8080;
+var PORT = 80;
 
 mongoose.connect('mongodb://localhost');//'localhost:27017');
 var Playlist = mongoose.model('Playlist', {
