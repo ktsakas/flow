@@ -44,7 +44,7 @@ class Playlist {
     }
     
     func getSongsFromJson(json : JSON) {
-        if let songJsons = json.array {
+        if let songJsons = json["songs"].array {
             songs.removeAll()
 
             for songJson in songJsons {
@@ -53,6 +53,7 @@ class Playlist {
             assert(isSortedByVoteCount(), "songs array is not sorted by vote count")
             assert(!containsDuplicates(), "songs array contains duplicate songs")
         } else {
+            print(json["songs"])
             assert(false, "json object is not an array")
         }
     }

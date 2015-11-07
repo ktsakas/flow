@@ -39,7 +39,8 @@ struct FlowNetwork {
     }
     
     static func createPlaylist(playlist : Playlist) {
-        Alamofire.request(.POST, "/users/:userId/playlists", parameters: [:])
+        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists",
+            parameters: ["name": playlist.name, "songs": []])
             .responseJSON(completionHandler: { response in
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle it
@@ -51,6 +52,19 @@ struct FlowNetwork {
                 print(response.response) // URL response
                 print(response.data)     // server data
                 print(response.result)   // result of response serialization
+                
+                if  let jsonObject = response.result.value {
+                    print("JSONL \(jsonObject)")
+                    
+                    let json = JSON(jsonObject)
+                    
+                    if let id = json["_id"].string {
+                        playlist.id = id
+                    } else {
+                        assert(false, "missing _id field in json")
+                    }
+                    
+                }
                 
             })
     }
