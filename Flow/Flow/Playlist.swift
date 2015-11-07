@@ -34,17 +34,17 @@ class Playlist {
         var names = Set<String>()
         
         for song in songs {
-            if (names.contains(song.name)) {
+            if (names.contains(song.id)) {
                 return true
             }
-            names.insert(song.name)
+            names.insert(song.id)
         }
         
         return false;
     }
     
     func getSongsFromJson(json : JSON) {
-        if let songJsons = json.array {
+        if let songJsons = json["songs"].array {
             songs.removeAll()
 
             for songJson in songJsons {
@@ -53,14 +53,16 @@ class Playlist {
             assert(isSortedByVoteCount(), "songs array is not sorted by vote count")
             assert(!containsDuplicates(), "songs array contains duplicate songs")
         } else {
+            print(json["songs"])
             assert(false, "json object is not an array")
         }
     }
     
     func print_self() {
-        print("\nPLAYLIST: name: \(name), user: \(user.name), id: \(id)")
+        print("\nPLAYLIST: name: \(name), user: \(user), id: \(id)")
         for song in songs {
-            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+            print("\t\(song)")
+//            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
         }
         print("END_PLAYLIST\n")
         
