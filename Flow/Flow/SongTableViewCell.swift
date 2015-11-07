@@ -27,6 +27,7 @@ class SongTableViewCell: UITableViewCell {
   }
 
   @IBAction func tappedUpvote(sender: AnyObject) {
+    print("tapped upvote")
   }
 
 }

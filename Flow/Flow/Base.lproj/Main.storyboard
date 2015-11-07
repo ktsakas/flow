@@ -34,7 +34,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join Valentin's Flow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92H-K4-ClU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Valentin's Flow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92H-K4-ClU">
                                                     <rect key="frame" x="8" y="8" width="584" height="59.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
@@ -44,6 +44,12 @@
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="92H-K4-ClU" secondAttribute="bottom" constant="8" id="GMA-tL-UoQ"/>
+                                                <constraint firstItem="92H-K4-ClU" firstAttribute="leading" secondItem="pqb-eP-FZu" secondAttribute="leading" constant="8" id="Pzr-b4-jzq"/>
+                                                <constraint firstItem="92H-K4-ClU" firstAttribute="centerX" secondItem="pqb-eP-FZu" secondAttribute="centerX" id="quU-9V-OJF"/>
+                                                <constraint firstItem="92H-K4-ClU" firstAttribute="top" secondItem="pqb-eP-FZu" secondAttribute="top" constant="8" id="yG4-Q4-Ixc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -112,7 +118,21 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="Vng-0Z-tUA"/>
+                    <navigationItem key="navigationItem" id="Vng-0Z-tUA">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="aTb-xm-yaR">
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flowLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tS7-xX-sCz">
+                                    <rect key="frame" x="-15" y="-12" width="270" height="45"/>
+                                    <animations/>
+                                </imageView>
+                            </subviews>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="xKL-AO-HKq" id="tms-NL-0l1"/>
                     </connections>
@@ -167,17 +187,25 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYd-XJ-umS">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYd-XJ-umS">
                                                     <rect key="frame" x="536" y="27" width="41" height="41"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="TWT-8E-gMp"/>
+                                                        <constraint firstAttribute="width" constant="41" id="tv3-0Q-Ejo"/>
+                                                    </constraints>
                                                     <state key="normal" image="collapse_arrow-1"/>
                                                     <connections>
                                                         <action selector="tappedUpvote:" destination="Fa8-mJ-XZe" eventType="touchUpInside" id="u68-i5-6WU"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nm-ds-4qB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nm-ds-4qB">
                                                     <rect key="frame" x="535" y="65" width="42" height="21"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="e0w-BQ-YqJ"/>
+                                                        <constraint firstAttribute="width" constant="42" id="e6p-zv-gLl"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -185,6 +213,12 @@
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="RYd-XJ-umS" secondAttribute="trailing" constant="23" id="8g1-0s-54o"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Nm-ds-4qB" secondAttribute="trailing" constant="23" id="ibo-B9-6mx"/>
+                                                <constraint firstAttribute="bottom" secondItem="9Nm-ds-4qB" secondAttribute="bottom" constant="8.5" id="s5h-Il-KdT"/>
+                                                <constraint firstAttribute="bottom" secondItem="RYd-XJ-umS" secondAttribute="bottom" constant="26.5" id="vjK-nV-vbR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -297,5 +331,6 @@
     <resources>
         <image name="blurryBackgroundS" width="850" height="1449"/>
         <image name="collapse_arrow-1" width="48" height="48"/>
+        <image name="flowLogo" width="432" height="346"/>
     </resources>
 </document>

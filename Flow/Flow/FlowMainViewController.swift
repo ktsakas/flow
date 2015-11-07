@@ -45,9 +45,10 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
     let song : Song = songsArray![indexPath.row]
-
     songCell.songTitleLabel.text = song.name
     songCell.songArtistLabel.text = song.artist
+    let votes = (songsArray?.count)! - indexPath.row
+    songCell.voteCountLabel.text = "\(votes)"
 
 
     return songCell
