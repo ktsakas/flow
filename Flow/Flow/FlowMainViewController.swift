@@ -12,7 +12,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
   let songCellID = "songCellID"
-  var songsArray : Array?
+  var songsArray : Array<Song>?
 
   override func viewDidLoad() {
     super.viewDidLoad()
