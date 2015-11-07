@@ -11,27 +11,16 @@ import SwiftyJSON
 
 
 struct FlowNetwork {
-
-  func getSongsForPlaylistId(id : String) -> Array<Song> {
-
-    let songArray = Array<Song>()
-    // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
-
-    return songArray;
-  }
-
-  func getFakeSongs() -> Array<Song> {
-
-    var songsArray = Array<Song>()
-
-    for i in 0...5 {
-      let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)", voteCount: i, imageLink: "link.com")
-      songsArray.append(song)
-
+    
+    func getSongsForPlaylistId(id : String) -> Array<Song> {
+        
+        let songArray = Array<Song>()
+        // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
+        
+        return songArray;
     }
-    return songsArray;
-  }
-
+    
+    
     static func getSongsForPlaylistId(id : String) -> Array<Song> {
         
         let songArray = Array<Song>()
@@ -46,12 +35,11 @@ struct FlowNetwork {
         var songsArray = Array<Song>()
         
         for i in 0...5 {
-          let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)", voteCount: i, imageLink: "link.com")
-            //      song.songName = "song\(i)"
-            //      song.songArtist = "artist\(i)"
-            //      song.imageLink = "https://link.com"
+            let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)",
+                voteCount: 5-i, imageLink: "link.com", songLink: "link.com")
             songsArray.append(song)
         }
+
         
         return songsArray
     }
@@ -112,7 +100,9 @@ struct FlowNetwork {
     }
     
     static func updatePlaylist(playlist : Playlist) {
-        Alamofire.request(.GET, "users/\(playlist.user.id)/playlists/\(playlist.id)")
+        let path = "users/\(playlist.user.id)/playlists/\(playlist.id)"
+        print("updatePlaylist path: \(path)")
+        Alamofire.request(.GET, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist))
     }
     

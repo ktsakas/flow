@@ -9,30 +9,11 @@
 import UIKit
 
 class FlowMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-//<<<<<<< HEAD
-//=======
-//
-//
-//  let songCellID = "songCell"
-//  var songsArray : Array<Song>?
-//  var playlist : Playlist?
-//
-//  @IBOutlet var tableView: UITableView!
-//
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//    songsArray = FlowNetwork.getFakeSongs()
-//    tableView.delegate = self
-//    tableView.dataSource = self
-//    tableView.reloadData()
-//>>>>>>> origin/master
     
     
     let songCellID = "songCell"
     
     var playlist = Playlist(name: "playlist1", user: User(name: "user1", id: "user1"), id: "playlist1")
-    
-//    var songsArray : Array<Song>?
     
     @IBOutlet var tableView: UITableView!
     
@@ -46,14 +27,14 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         
         playlist.print_self()
         
+        print("is sorted: \(playlist.isSortedByVoteCount())")
+        print("contains duplicates: \(playlist.containsDuplicates())")
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         
         FlowNetwork.updatePlaylist(playlist)
-        
-        playlist.print_self()
-        
         
         
     }
