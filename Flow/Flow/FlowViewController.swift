@@ -10,6 +10,9 @@ import UIKit
 
 class FlowViewController: UIViewController {
 
+  let flowNames = ["Join Valentin's Flow", "Create Flow"]
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +23,35 @@ class FlowViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+
+
+  /**
+   *  //MARK: - TableView Delegate
+   * TableView Delegate Methods
+   */
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    print("selected FLOW brah")
+
+    let vc = storyboard?.instantiateViewControllerWithIdentifier("flowMainController") as! FlowMainViewController
+
+    self.presentViewController(vc, animated: true, completion: nil)
+  }
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let flowCell : FlowNameTableViewCell = tableView.dequeueReusableCellWithIdentifier("flowCell", forIndexPath: indexPath) as! FlowNameTableViewCell
+
+    flowCell.nameLabel.text = flowNames[indexPath.row]
+    return flowCell
+
+  }
+
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    return flowNames.count
+  }
+
 
     /*
     // MARK: - Navigation

@@ -8,19 +8,60 @@
 
 import UIKit
 
-class FlowMainViewController: UIViewController {
+class FlowMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+  let songCellID = "songCell"
+  var songsArray : Array<Song>?
+  let networking = FlowNetwork()
+
+  @IBOutlet var tableView: UITableView!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    songsArray = networking.getFakeSongs()
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.reloadData()
+  }
+
+  override func didReceiveMemoryWarning() {
+      super.didReceiveMemoryWarning()
+      // Dispose of any resources that can be recreated.
+  }
+
+
+  /**
+   *  //MARK: - TableView Delegate
+   * TableView Delegate Methods
+   */
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    print("selected song brah")
+  }
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let songCell : SongTableViewCell = tableView.dequeueReusableCellWithIdentifier(songCellID, forIndexPath: indexPath) as! SongTableViewCell
+
+
+    let song : Song = songsArray![indexPath.row]
+
+    songCell.songTitleLabel.text = song.name
+    songCell.songArtistLabel.text = song.artist
+
+
+    return songCell
+
+  }
+
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    if let count = songsArray?.count {
+      return count
+    } else {
+      return 0
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+  }
 
     /*
     // MARK: - Navigation
