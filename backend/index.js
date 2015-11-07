@@ -51,10 +51,11 @@ app.post('/users/:userId/playlists', function (req, res) {
 	res.end();
 });
 
-app.get('/:test', function (req, res) {
+app.get('/', function (req, res) {
 	// console.log(req.params.test);
 
 	res.send('Hello World!');
+	res.end();
 });
 
 app.listen(PORT, function () {
