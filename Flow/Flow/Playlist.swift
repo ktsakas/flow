@@ -34,10 +34,10 @@ class Playlist {
         var names = Set<String>()
         
         for song in songs {
-            if (names.contains(song.name)) {
+            if (names.contains(song.id)) {
                 return true
             }
-            names.insert(song.name)
+            names.insert(song.id)
         }
         
         return false;
@@ -59,9 +59,9 @@ class Playlist {
     }
     
     func print_self() {
-        print("\nPLAYLIST: name: \(name), user: \(user.name), id: \(id)")
+        print("\nPLAYLIST: name: \(name), user: \(user), id: \(id)")
         for song in songs {
-            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+            print("  id: \(song.id), name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
         }
         print("END_PLAYLIST\n")
         

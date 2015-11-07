@@ -9,12 +9,15 @@
 import UIKit
 
 class FlowMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+<<<<<<< HEAD
 
+=======
+    
+    
+>>>>>>> 8dbdb8969f29dc19c5a8e528efe707ce8dcab7c6
     let songCellID = "songCell"
     
     var playlist = Playlist(name: "playlist1", user: User(name: "user1", id: "user1"), id: "playlist1")
-    
-//    var songsArray : Array<Song>?
     
     @IBOutlet var tableView: UITableView!
     
@@ -22,6 +25,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         
+<<<<<<< HEAD
 
       //http tests
 
@@ -41,6 +45,24 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
       FlowNetwork.updatePlaylist(playlist)
       
       playlist.print_self()
+=======
+        //http tests
+        
+        playlist.songs = FlowNetwork.getFakeSongs()
+        
+        playlist.print_self()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
+        
+        FlowNetwork.createPlaylist(playlist, callback: {
+            print("done creating playlist")
+            FlowNetwork.updatePlaylist(self.playlist, callback: {
+                print("done updating playlist")
+            })
+        })
+>>>>>>> 8dbdb8969f29dc19c5a8e528efe707ce8dcab7c6
         
         
         
