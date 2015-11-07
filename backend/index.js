@@ -8,7 +8,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var handlers = require('./handlers.js');
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 app.get('/users/:userId/playlists', handlers.getAllPlaylistsForUser);
 
 // Get playlist for user
-app.get('users/:userId/playlists/:playlistId', handlers.getPlalistForUser);
+app.get('users/:userId/playlists/:playlistId', handlers.getPlaylistForUser);
 
 // Create playlist
 app.post('/users/:userId/playlists', handlers.createPlaylist);
@@ -47,6 +47,6 @@ app.get('/', function(req, res) {
   res.end();
 });
 
-app.listen(PORT, function() {
-  console.log('Server listening on port: %s', PORT);
+app.listen(port, function() {
+  console.log('Server listening on port: %s', port);
 });
