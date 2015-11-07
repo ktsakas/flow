@@ -52,7 +52,7 @@
 		48C4E14C1BEEA4E40061BC5B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		48C4E14D1BEEA4E40061BC5B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		48C4E14E1BEEA4E40061BC5B /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		48C4E1521BEEA90B0061BC5B /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
+		48C4E1521BEEA90B0061BC5B /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		73773DF77E5E6573AFABD850 /* Pods-Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.debug.xcconfig"; sourceTree = "<group>"; };
 		80A108849B260A449FAE8793 /* Pods-Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.release.xcconfig"; sourceTree = "<group>"; };
 		A7A61AC31BED846200BD8A22 /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +164,7 @@
 				A7A61AD21BED846200BD8A22 /* Info.plist */,
 				48C4E1421BEE56590061BC5B /* Playlist.swift */,
 				48C4E1441BEE660D0061BC5B /* User.swift */,
-				48C4E1521BEEA90B0061BC5B /* Bridge-Header.h */,
+				48C4E1521BEEA90B0061BC5B /* Bridging-Header.h */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -539,7 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Valpe-Technologies.Flow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -556,7 +556,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Valpe-Technologies.Flow";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flow/Bridging-Header.h";
 			};
 			name = Release;
 		};

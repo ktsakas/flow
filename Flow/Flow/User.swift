@@ -18,9 +18,7 @@ struct User {
         self.id = id
     }
     
-    init (json : JSON) {
-        print("making user out of json:\(json)")
-        
+    init (json : JSON) {        
         self.name = json["name"].stringValue
         self.id = json["id"].stringValue
         

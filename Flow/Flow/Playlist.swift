@@ -24,10 +24,10 @@ class Playlist {
     init(json : JSON) {
         self.name = json["name"].stringValue
         self.user = User(json: json["user"])
-        self.id = json["id"].stringValue
+        self.id = json["_id"].stringValue
         
-        assert(self.name != "", "empty name")
-        assert(self.id != "", "empty id")
+        assert(self.name != "", "empty name in json(\(json))")
+        assert(self.id != "", "empty id in json(\(json))")
         
         self.getSongsFromJson(json)
         
