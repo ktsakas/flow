@@ -70,18 +70,9 @@ struct FlowNetwork {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
         print("createPlaylist path: \(path)")
         
-        var songs = Array<[String:AnyObject]>()
-        
-        for song in playlist.songs {
-            songs.append(song.toDictionary())
-        }
-        
-        let songsJson = JSON(songs)
-        
-        let params:[String:AnyObject] = ["name": playlist.name, "songs": songsJson.rawValue, "userName": playlist.user.name]
-        
-        print(params);
-        
+                
+        let params:[String:AnyObject] = ["name": playlist.name, "songs": [], "userName": playlist.user.name]
+                
         Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
@@ -120,12 +111,7 @@ struct FlowNetwork {
                 print(response.result.error!)
                 return
             }
-            
-            print(response.request)  // original URL request
-            print(response.response) // URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
+
             if let jsonObject = response.result.value {
                 
                 print("JSON: \(jsonObject)")
@@ -148,5 +134,29 @@ struct FlowNetwork {
         Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
+    }
+    
+    static func addSong(song : Song, playlist : Playlist, callback : Void -> Void) {
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(song.id)"
+        
+        print("add song path:\(path)")
+        
+        Alamofire.request(.PUT, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
+            guard response.result.error == nil else {
+                // got an error in getting the data, need to handle it
+                print("error calling GET on /posts/1")
+                print(response.result.error!)
+                return
+            }
+        
+            if let jsonObject = response.result.value {
+                
+                print("JSON: \(jsonObject)")
+                
+                playlist.getSongsFromJson(JSON(jsonObject))
+                
+                callback()
+            }
+        })
     }
 }

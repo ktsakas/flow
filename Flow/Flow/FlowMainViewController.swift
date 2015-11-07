@@ -20,7 +20,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         // create playlist broaugh
-        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id1"), id: "playlistId1")
+        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id2"), id: "playlistId1")
         
         
         playlist.songs = FlowNetwork.getFakeSongs()
@@ -34,20 +34,28 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         
         FlowNetwork.createPlaylist(playlist, callback: {
             print("created playlist yay")
-            FlowNetwork.getPlaylistsForUserId("id1", callback: { playlists in
+            
+            FlowNetwork.addSong(Song(id: "song1", name: "song1", artist: "_", voteCount: 0, imageLink: "_", songLink: "_"), playlist: self.playlist, callback: {
+                
+                print("added song yay")
+                self.playlist.print_self()
+                
+            })
+            
+            FlowNetwork.getPlaylistsForUserId("id2", callback: { playlists in
                 print("got playlists yay")
-                for playlist in playlists {
-                    playlist.print_self()
+                for p in playlists {
+                    p.print_self()
                 }
             })
         })
         
-//        FlowNetwork.getPlaylistsForUserId("ktsakas", callback: { playlists in
-//            print("got playlists yay")
-//            for playlist in playlists {
-//                playlist.print_self()
-//            }
-//        })
+        //        FlowNetwork.getPlaylistsForUserId("ktsakas", callback: { playlists in
+        //            print("got playlists yay")
+        //            for playlist in playlists {
+        //                playlist.print_self()
+        //            }
+        //        })
         
         
     }

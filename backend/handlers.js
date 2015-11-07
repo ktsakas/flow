@@ -62,14 +62,13 @@ exports.addSong = function(req, res) {
 			error: "Failed to add song to playlist!"
 		};
 
-		var song = req.params;
+		var song = req.body;
 		song.votes = 0;
 		playlist.songs.push(song);
 		playlist.save(function(err) {
 			if (err) return {
 				error: "Failed to add new song!"
 			};
-			console.log('updated playlist:', playlist);
 
 			res.json(playlist);
 			res.end();
