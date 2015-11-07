@@ -135,6 +135,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="xKL-AO-HKq" id="tms-NL-0l1"/>
+                        <segue destination="VX0-ir-jco" kind="presentation" identifier="toFlowSegue" id="Ft1-gg-2xe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -231,14 +232,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iez-ta-Ihb">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3yV-d1-cM0" id="1ic-Vq-NWY"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="v2l-y5-Dzn" secondAttribute="trailing" id="4dZ-dV-2TJ"/>
+                            <constraint firstItem="L7y-KD-Ijb" firstAttribute="top" secondItem="iez-ta-Ihb" secondAttribute="bottom" id="4iL-pp-4oW"/>
                             <constraint firstItem="v2l-y5-Dzn" firstAttribute="top" secondItem="Gt0-rj-Pgv" secondAttribute="bottom" id="K0V-7N-pmA"/>
                             <constraint firstItem="v2l-y5-Dzn" firstAttribute="leading" secondItem="kzc-6e-rFr" secondAttribute="leading" id="d20-DA-R5A"/>
+                            <constraint firstItem="iez-ta-Ihb" firstAttribute="leading" secondItem="kzc-6e-rFr" secondAttribute="leading" id="gaC-4o-LTy"/>
+                            <constraint firstItem="iez-ta-Ihb" firstAttribute="centerX" secondItem="kzc-6e-rFr" secondAttribute="centerX" id="hZm-8Z-yRc"/>
                             <constraint firstItem="L7y-KD-Ijb" firstAttribute="top" secondItem="v2l-y5-Dzn" secondAttribute="bottom" id="ihM-IA-s70"/>
+                            <constraint firstAttribute="trailing" secondItem="iez-ta-Ihb" secondAttribute="trailing" id="ldc-Zp-vsK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7bK-9r-z0L">
@@ -260,10 +273,20 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchDisplayController" destination="r9l-Cv-ZQf" id="VMV-TX-SBz"/>
                         <outlet property="tableView" destination="v2l-y5-Dzn" id="9mT-3o-T3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mD0-Pf-bk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="r9l-Cv-ZQf">
+                    <connections>
+                        <outlet property="delegate" destination="3yV-d1-cM0" id="26y-ss-6hi"/>
+                        <outlet property="searchBar" destination="iez-ta-Ihb" id="i6R-6W-HKQ"/>
+                        <outlet property="searchContentsController" destination="3yV-d1-cM0" id="5Jn-6F-kS3"/>
+                        <outlet property="searchResultsDataSource" destination="3yV-d1-cM0" id="NQb-Aw-TCb"/>
+                        <outlet property="searchResultsDelegate" destination="3yV-d1-cM0" id="f1K-Mu-FYt"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1200" y="-47"/>
         </scene>
@@ -291,12 +314,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0N-lh-9do" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="-64"/>
+            <point key="canvasLocation" x="1906" y="-47"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gz1-gL-2QY">
             <objects>
-                <navigationController id="VX0-ir-jco" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="flowNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VX0-ir-jco" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIm-XA-KnI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -308,7 +331,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErZ-6c-n6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="720"/>
+            <point key="canvasLocation" x="424" y="732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9VQ-k1-Xvs">

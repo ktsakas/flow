@@ -9,25 +9,7 @@
 import UIKit
 
 class FlowMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-//<<<<<<< HEAD
-//=======
-//
-//
-//  let songCellID = "songCell"
-//  var songsArray : Array<Song>?
-//  var playlist : Playlist?
-//
-//  @IBOutlet var tableView: UITableView!
-//
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//    songsArray = FlowNetwork.getFakeSongs()
-//    tableView.delegate = self
-//    tableView.dataSource = self
-//    tableView.reloadData()
-//>>>>>>> origin/master
-    
-    
+
     let songCellID = "songCell"
     
     var playlist = Playlist(name: "playlist1", user: User(name: "user1", id: "user1"), id: "playlist1")
@@ -40,19 +22,25 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         
-        //http tests
-        
-        playlist.songs = FlowNetwork.getFakeSongs()
-        
-        playlist.print_self()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.reloadData()
-        
-        FlowNetwork.updatePlaylist(playlist)
-        
-        playlist.print_self()
+
+      //http tests
+
+      // create playlist broaugh
+      playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"userIdValentin"), id: "playlistId1")
+
+
+
+      playlist.songs = FlowNetwork.getFakeSongs()
+
+      playlist.print_self()
+      
+      tableView.delegate = self
+      tableView.dataSource = self
+      tableView.reloadData()
+      
+      FlowNetwork.updatePlaylist(playlist)
+      
+      playlist.print_self()
         
         
         
@@ -70,30 +58,58 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
      */
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("selected song brah")
+      //songCell.setHighlighted(false, animated: false)
+
+      print("selected song brah")
     }
+
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let songCell : SongTableViewCell = tableView.dequeueReusableCellWithIdentifier(songCellID, forIndexPath: indexPath) as! SongTableViewCell
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let songCell : SongTableViewCell = tableView.dequeueReusableCellWithIdentifier(songCellID, forIndexPath: indexPath) as! SongTableViewCell
-        
-        
-        let song : Song = playlist.songs[indexPath.row]
-        songCell.songTitleLabel.text = song.name
-        songCell.songArtistLabel.text = song.artist
-        let votes = playlist.songs.count - indexPath.row
-        songCell.voteCountLabel.text = "\(votes)"
-        
-        songCell.songId = song.id
-        songCell.playlist = playlist
-        
-        return songCell
-        
+    
+    let song : Song = playlist.songs[indexPath.row]
+    songCell.songTitleLabel.text = song.name
+    songCell.songArtistLabel.text = song.artist
+    let votes = playlist.songs.count - indexPath.row
+    songCell.voteCountLabel.text = "\(votes)"
+    
+    songCell.songId = song.id
+    songCell.playlist = playlist
+    songCell.selectionStyle = .None
+
+    return songCell
+  }
+
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 2 // we have one for currently playing and the other for songs coming up next.
+  }
+
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if (section == 0) {
+      return 1 // the one currently playing
+    } else {
+      return playlist.songs.count - 1 // all the others.
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playlist.songs.count
+  }
+
+  func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if (section == 0) {
+      return "Now Playing"
     }
-    
+    return "Next"
+  }
+
+  func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView //recast your view as a UITableViewHeaderFooterView
+    header.contentView.backgroundColor =  UIColor.lightGrayColor()//UIColor.clearColor()//UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 0.0) //make the background color light blue
+
+    header.textLabel!.textColor = UIColor.whiteColor() //make the text white
+    header.alpha = 1 //make the header transparent
+  }
+  
+  
+
+  
     /*
     // MARK: - Navigation
     
