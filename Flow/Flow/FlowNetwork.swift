@@ -76,7 +76,7 @@ struct FlowNetwork {
         Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
-                print("error calling GET on \(path)")
+                print("error calling POST on \(path)")
                 print(response.result.error!)
                 return
             }
@@ -140,6 +140,8 @@ struct FlowNetwork {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(song.id)"
         
         print("add song path:\(path)")
+        
+        print("params: \(song.toDictionary())")
         
         Alamofire.request(.PUT, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
