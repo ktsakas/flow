@@ -31,16 +31,8 @@ struct FlowNetwork {
                 
                 //if json is an array of Song Jsons
                 for (_, subJson):(String, JSON) in json {
-                    let song = Song(
-                        songName: subJson["name"].string,
-                        songArtist: subJson["artist"].string,
-                        voteCount: subJson["voteCount"].intValue,
-                        imageLink: subJson["imageLink"].string)
-                    
-                    songArray.append(song)
+                    songArray.append(Song(json: subJson))
                 }
-                
-                
             }
     }
 
