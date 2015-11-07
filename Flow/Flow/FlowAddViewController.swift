@@ -10,6 +10,7 @@ import UIKit
 
 class FlowAddViewController: UIViewController {
 
+  @IBOutlet var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
 
