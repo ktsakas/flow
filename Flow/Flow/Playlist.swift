@@ -11,12 +11,14 @@ import SwiftyJSON
 
 class Playlist {
     var name : String
-    var user : String
+    var user : User
+    var id : String
     var songs = Array<Song>()
     
-    init(name : String, user : String) {
+    init(name : String, user : User, id : String) {
         self.name = name
         self.user = user
+        self.id = id
     }
     
     func isSortedByVoteCount() -> Bool {
@@ -53,5 +55,14 @@ class Playlist {
         } else {
             assert(false, "json object is not an array")
         }
+    }
+    
+    func print_self() {
+        print("\nPLAYLIST: name: \(name), user: \(user.name), id: \(id)")
+        for song in songs {
+            print("  name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+        }
+        print("END_PLAYLIST\n")
+        
     }
 }
