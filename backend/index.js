@@ -6,7 +6,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost');//'localhost:27017');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');//'localhost:27017');
 var Playlist = mongoose.model('Playlist', {
 	name: String,
 	user: String,
