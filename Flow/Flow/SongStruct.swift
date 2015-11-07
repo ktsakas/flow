@@ -9,6 +9,8 @@
 import Foundation
 import SwiftyJSON
 
+//why are the strings Optionals?
+
 struct Song {
     var name: String?
     var artist: String?
