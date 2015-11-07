@@ -1,4 +1,13 @@
+var mongoose = require('mongoose');
 var songsUtils = require('./songs.js');
+
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
+
+var Playlist = mongoose.model('Playlist', {
+  name: String,
+  user: String,
+  songs: []
+});
 
 //TODO how to do body vs params?
 //TODO what is playlist id? name?

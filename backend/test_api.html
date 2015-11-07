@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test SoundCloud API</title>
+</head>
+<body>
+
+<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+<script>
+SC.initialize({
+  client_id: 'aa43bfbcd95848ac3875efacf5de8ba4'
+});
+
+// find all sounds of buskers licensed under 'creative commons share alike'
+SC.get('/tracks', {
+	q: 'eminem'
+}).then(function(tracks) {
+	console.log(tracks);
+});
+</script>
+
+</body>
+</html>
