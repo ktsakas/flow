@@ -13,16 +13,28 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
 
   let songCellID = "songCell"
   var songsArray : Array<Song>?
-  let networking = FlowNetwork()
 
   @IBOutlet var tableView: UITableView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    songsArray = networking.getFakeSongs()
+    songsArray = FlowNetwork.getFakeSongs()
     tableView.delegate = self
     tableView.dataSource = self
     tableView.reloadData()
+    
+    //http tests
+    let p = Playlist(name: "playlist1", user: User(name: "user1", id: "user1"), id: "playlist1")
+    
+    p.songs = songsArray!
+    
+    p.print_self()
+    
+    FlowNetwork.updatePlaylist(p)
+    
+    p.print_self()
+    
+    
   }
 
   override func didReceiveMemoryWarning() {

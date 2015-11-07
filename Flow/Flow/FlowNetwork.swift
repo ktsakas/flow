@@ -14,7 +14,7 @@ struct FlowNetwork {
     
     
     
-    func getSongsForPlaylistId(id : String) -> Array<Song> {
+    static func getSongsForPlaylistId(id : String) -> Array<Song> {
         
         let songArray = Array<Song>()
         // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
@@ -23,7 +23,7 @@ struct FlowNetwork {
         return songArray;
     }
     
-    func getFakeSongs() -> Array<Song> {
+    static func getFakeSongs() -> Array<Song> {
         
         var songsArray = Array<Song>()
         
@@ -38,7 +38,24 @@ struct FlowNetwork {
         return songsArray
     }
     
-    func makePlaylistUpdateHandler(playlist : Playlist) -> Response<AnyObject, NSError> -> Void {
+    static func createPlaylist(playlist : Playlist) {
+        Alamofire.request(.POST, "/users/:userId/playlists", parameters: [:])
+            .responseJSON(completionHandler: { response in
+                guard response.result.error == nil else {
+                    // got an error in getting the data, need to handle it
+                    print("error calling GET on /posts/1")
+                    print(response.result.error!)
+                    return
+                }
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+            })
+    }
+    
+    static func makePlaylistUpdateHandler(playlist : Playlist) -> Response<AnyObject, NSError> -> Void {
         return { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
@@ -63,16 +80,13 @@ struct FlowNetwork {
         }
     }
     
-    
-    //todo: ansynchronous, need a callback type of thing
-    func updatePlaylist(playlist : Playlist) {
-        Alamofire.request(.GET, "users/\(playlist.user.id)/playlists/\(playlist.id)", parameters: [:])
+    static func updatePlaylist(playlist : Playlist) {
+        Alamofire.request(.GET, "users/\(playlist.user.id)/playlists/\(playlist.id)")
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist))
     }
     
-    func incrementVoteForSong(songId : String, playlist : Playlist) {
-        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)",
-            parameters: [:], encoding: .JSON)
+    static func incrementVoteForSong(songId : String, playlist : Playlist) {
+        Alamofire.request(.POST, "/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist))
         
     }
