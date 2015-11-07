@@ -9,6 +9,23 @@
 import UIKit
 
 class FlowMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+//<<<<<<< HEAD
+//=======
+//
+//
+//  let songCellID = "songCell"
+//  var songsArray : Array<Song>?
+//  var playlist : Playlist?
+//
+//  @IBOutlet var tableView: UITableView!
+//
+//  override func viewDidLoad() {
+//    super.viewDidLoad()
+//    songsArray = FlowNetwork.getFakeSongs()
+//    tableView.delegate = self
+//    tableView.dataSource = self
+//    tableView.reloadData()
+//>>>>>>> origin/master
     
     
     let songCellID = "songCell"
@@ -61,10 +78,13 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         let song : Song = playlist.songs[indexPath.row]
-        
         songCell.songTitleLabel.text = song.name
         songCell.songArtistLabel.text = song.artist
+        let votes = playlist.songs.count - indexPath.row
+        songCell.voteCountLabel.text = "\(votes)"
         
+        songCell.songId = song.id
+        songCell.playlist = playlist
         
         return songCell
         

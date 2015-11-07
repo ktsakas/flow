@@ -36,7 +36,9 @@ class FlowViewController: UIViewController {
 
     let vc = storyboard?.instantiateViewControllerWithIdentifier("flowMainController") as! FlowMainViewController
 
-    self.presentViewController(vc, animated: true, completion: nil)
+    self.navigationController?.pushViewController(vc, animated: true)
+
+    //self.presentViewController(vc, animated: true, completion: nil)
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

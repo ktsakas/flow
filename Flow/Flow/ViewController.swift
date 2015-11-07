@@ -41,6 +41,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     let vc = storyboard?.instantiateViewControllerWithIdentifier("flowMainController") as! FlowMainViewController
 
+    vc.playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"userIdValentin"), id: "playlistId1")
+
+
     self.presentViewController(vc, animated: true, completion: nil)
   }
 

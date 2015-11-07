@@ -11,9 +11,27 @@ import SwiftyJSON
 
 
 struct FlowNetwork {
-    
-    
-    
+
+  func getSongsForPlaylistId(id : String) -> Array<Song> {
+
+    let songArray = Array<Song>()
+    // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
+
+    return songArray;
+  }
+
+  func getFakeSongs() -> Array<Song> {
+
+    var songsArray = Array<Song>()
+
+    for i in 0...5 {
+      let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)", voteCount: i, imageLink: "link.com")
+      songsArray.append(song)
+
+    }
+    return songsArray;
+  }
+
     static func getSongsForPlaylistId(id : String) -> Array<Song> {
         
         let songArray = Array<Song>()
@@ -28,7 +46,7 @@ struct FlowNetwork {
         var songsArray = Array<Song>()
         
         for i in 0...5 {
-            let song = Song(name: "song\(i)", artist: "artist\(i)", voteCount: i, imageLink: "link.com")
+          let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)", voteCount: i, imageLink: "link.com")
             //      song.songName = "song\(i)"
             //      song.songArtist = "artist\(i)"
             //      song.imageLink = "https://link.com"
@@ -65,7 +83,6 @@ struct FlowNetwork {
                     }
                     
                 }
-                
             })
     }
     

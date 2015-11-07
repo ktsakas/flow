@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -9,14 +8,6 @@ var handlers = require('./handlers.js');
 
 var app = express();
 var port = process.env.PORT || 3000;
-
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
-
-var Playlist = mongoose.model('Playlist', {
-  name: String,
-  user: String,
-  songs: []
-});
 
 // Middleware to parse the body
 app.use(bodyParser.json());
