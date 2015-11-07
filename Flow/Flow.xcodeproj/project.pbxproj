@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48C4E1431BEE56590061BC5B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C4E1421BEE56590061BC5B /* Playlist.swift */; };
 		A7A61AC71BED846200BD8A22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A61AC61BED846200BD8A22 /* AppDelegate.swift */; };
 		A7A61AC91BED846200BD8A22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A61AC81BED846200BD8A22 /* ViewController.swift */; };
 		A7A61ACC1BED846200BD8A22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A61ACA1BED846200BD8A22 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48C4E1421BEE56590061BC5B /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		73773DF77E5E6573AFABD850 /* Pods-Flow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.debug.xcconfig"; sourceTree = "<group>"; };
 		80A108849B260A449FAE8793 /* Pods-Flow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flow.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flow/Pods-Flow.release.xcconfig"; sourceTree = "<group>"; };
 		A7A61AC31BED846200BD8A22 /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 				A7A61ACD1BED846200BD8A22 /* Assets.xcassets */,
 				A7A61ACF1BED846200BD8A22 /* LaunchScreen.storyboard */,
 				A7A61AD21BED846200BD8A22 /* Info.plist */,
+				48C4E1421BEE56590061BC5B /* Playlist.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C4E1431BEE56590061BC5B /* Playlist.swift in Sources */,
 				A7D942621BEDB6DB00043823 /* FlowMainViewController.swift in Sources */,
 				A7A61AC91BED846200BD8A22 /* ViewController.swift in Sources */,
 				A7D942671BEDBA3C00043823 /* FlowViewController.swift in Sources */,

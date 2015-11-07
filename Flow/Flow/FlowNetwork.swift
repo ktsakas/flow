@@ -9,55 +9,21 @@
 import Alamofire
 import SwiftyJSON
 
-func isSortedByVoteCount(songs : Array<Song>) -> Bool {
-    for var i = 0; i < songs.count - 1; i++ {
-        if (songs[i].voteCount < songs[i + 1].voteCount) {
-            return false
-        }
-    }
-    return true
-}
-
-func containsDuplicates(songs : Array<Song>) -> Bool {
-    var names = Set<String>()
-    
-    for song in songs {
-        if (names.contains(song.name)) {
-            return true
-        }
-        names.insert(song.name)
-    }
-    
-    return false;
-}
-
-func songsFromJson(songsJson : AnyObject) -> Array<Song> {
-    var songs = Array<Song>()
-    //from swiftyJson's github example
-    let json = JSON(songsJson);
-    
-    if let songJsons = json.array {
-        for songJson in songJsons {
-            songs.append(Song(json: songJson))
-        }
-        assert(isSortedByVoteCount(songs), "songs array is not sorted by vote count")
-        assert(!containsDuplicates(songs), "songs array contains duplicate songs")
-        return songs
-    } else {
-        assert(false, "json object is not an array")
-    }
-}
 
 struct FlowNetwork {
     
-    //!! assumes backend gives array sorted by votecount
-    func getSongsForId(id : String) -> Array<Song> {
-        
-        var songs = Array<Song>()
-        
-        //taken from alamofire's github example
-        Alamofire.request(.GET, "/playlists/:playlistId", parameters: ["playlistId": id])
+    //todo: ansynchronous, need a callback type of thing
+    func updatePlaylist(playlist : Playlist) {
+        Alamofire.request(.GET, "users/:userId/playlists/:playlistId",
+            parameters: ["userId": playlist.user, "playlistId": playlist.name])
             .responseJSON { response in
+                guard response.result.error == nil else {
+                    // got an error in getting the data, need to handle it
+                    print("error calling GET on /posts/1")
+                    print(response.result.error!)
+                    return
+                }
+                
                 print(response.request)  // original URL request
                 print(response.response) // URL response
                 print(response.data)     // server data
@@ -67,21 +33,24 @@ struct FlowNetwork {
                     
                     print("JSON: \(jsonObject)")
                     
-                    songs = songsFromJson(jsonObject)
+                    playlist.getSongsFromJson(JSON(jsonObject))
                     
+                    //todo update playlist in view
                 }
         }
-        
-        return songs;
     }
     
-    //running time O(n), but we can probably assume the playlist will be small enough for it not to matter
-    //might be better suited to backend
-    func incrementVoteForSong(songName : String, playlistID : String) -> Array<Song> {
-        var songs = Array<Song>()
-        
-        Alamofire.request(.POST, "/", parameters: ["playlistId": playlistID, "name": songName])
+    func incrementVoteForSong(songName : String, playlist : Playlist) {
+        Alamofire.request(.POST, "/users/:userId/playlists/:playlistId",
+            parameters: ["playlistId": playlist.name, "name": songName], encoding: .JSON)
             .responseJSON { response in
+                guard response.result.error == nil else {
+                    // got an error in getting the data, need to handle it
+                    print("error calling GET on /posts/1")
+                    print(response.result.error!)
+                    return
+                }
+                
                 print(response.request)  // original URL request
                 print(response.response) // URL response
                 print(response.data)     // server data
@@ -91,22 +60,11 @@ struct FlowNetwork {
                     
                     print("JSON: \(jsonObject)")
                     
-                    //from swiftyJson's github example
-                    let json = JSON(jsonObject);
+                    playlist.getSongsFromJson(JSON(jsonObject))
                     
-                    let songJsons: Array<JSON> = json.array!
-                    
-                    for songJson in songJsons {
-                        songs.append(Song(json: songJson))
-                    }
-                    
-                    assert(isSortedByVoteCount(songs), "songs array is not sorted by vote count")
-                    assert(!containsDuplicates(songs), "songs array contains duplicate songs")
-                    
+                    //todo update playlist in view
                 }
         }
-        
-        return songs;
     }
     
 }

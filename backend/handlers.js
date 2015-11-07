@@ -1,7 +1,7 @@
 var songsUtils = require('./songs.js');
 
 //TODO how to do body vs params?
-
+//TODO what is playlist id? name?
 
 exports.getAllPlaylistsForUser = function(req, res) {
 	Playlist.find({
