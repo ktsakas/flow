@@ -46,8 +46,8 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
 
     let song : Song = songsArray![indexPath.row]
 
-    songCell.songTitleLabel.text = song.songName
-    songCell.songArtistLabel.text = song.songArtist
+    songCell.songTitleLabel.text = song.name
+    songCell.songArtistLabel.text = song.artist
 
 
     return songCell
