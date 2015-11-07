@@ -11,20 +11,20 @@ import SwiftyJSON
 
 struct User {
     var name : String
-    var id : String
+    var email : String
     
-    init(name : String, id : String) {
+    init(name : String, email : String) {
         self.name = name
-        self.id = id
+        self.email = email
     }
     
     init (json : JSON) {
         print("making user out of json:\(json)")
         
         self.name = json["name"].stringValue
-        self.id = json["_id"].stringValue
+        self.email = json["email"].stringValue
         
         assert(self.name != "", "empty name")
-        assert(self.id != "", "empty id")
+        assert(self.email != "", "empty email")
     }
 }

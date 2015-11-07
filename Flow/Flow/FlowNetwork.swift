@@ -67,11 +67,11 @@ struct FlowNetwork {
     
     static func createPlaylist(playlist : Playlist, callback : Void -> Void) {
         
-        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
+        let path = "\(apiUrl)/users/\(playlist.user.email)/playlists"
         print("createPlaylist path: \(path)")
 
         Alamofire.request(.POST, path,
-            parameters: ["name": playlist.name, "songs": []])
+            parameters: ["name": playlist.name, "songs": [], "userName": playlist.user.name])
             .responseJSON(completionHandler: { response in
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle it
@@ -123,14 +123,14 @@ struct FlowNetwork {
     }
     
     static func updatePlaylist(playlist : Playlist, callback : Void -> Void) {
-        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
+        let path = "\(apiUrl)/users/\(playlist.user.email)/playlists/\(playlist.id)"
         print("updatePlaylist path: \(path)")
         Alamofire.request(.GET, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
     }
     
     static func incrementVoteForSong(songId : String, playlist : Playlist, callback : Void -> Void) {
-        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
+        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.email)/playlists/\(playlist.id)/songs/\(songId)")
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
     }

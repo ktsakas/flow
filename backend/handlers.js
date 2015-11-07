@@ -23,7 +23,7 @@ exports.getPlaylistForUser = function(req, res) {
 	console.log(req.params.playlistId, req.params.userId);
 	Playlist.findOne({
 		_id: req.params.playlistId,
-		user: req.params.userId
+		'user.email': req.params.user.name
 	}, function(err, playlist) {
 		console.log('found playlist:', playlist);
 		res.json(playlist);
@@ -40,7 +40,10 @@ exports.createPlaylist = function(req, res) {
 
 	Playlist.create({
 		name: req.body.name,
-		user: req.params.userId,
+		user: {
+			name: req.body.userName,
+			email: req.params.userId
+		},
 		songs: songs
 	}, function(err, playlist) {
 		if (err) return {
