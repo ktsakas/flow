@@ -60,7 +60,7 @@ struct FlowNetwork {
                 voteCount: 5-i, imageLink: "link.com", songLink: "link.com")
             songsArray.append(song)
         }
-
+        
         
         return songsArray
     }
@@ -69,37 +69,47 @@ struct FlowNetwork {
         
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
         print("createPlaylist path: \(path)")
-
-        Alamofire.request(.POST, path,
-            parameters: ["name": playlist.name, "songs": [], "userName": playlist.user.name])
-            .responseJSON(completionHandler: { response in
-                guard response.result.error == nil else {
-                    // got an error in getting the data, need to handle it
-                    print("error calling GET on /posts/1")
-                    print(response.result.error!)
-                    return
+        
+        var songs = Array<[String:AnyObject]>()
+        
+        for song in playlist.songs {
+            songs.append(song.toDictionary())
+        }
+        
+        let songsJson = JSON(songs)
+        
+        let params:[String:AnyObject] = ["name": playlist.name, "songs": songsJson.rawValue, "userName": playlist.user.name]
+        
+        print(params);
+        
+        Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
+            guard response.result.error == nil else {
+                // got an error in getting the data, need to handle it
+                print("error calling GET on \(path)")
+                print(response.result.error!)
+                return
+            }
+            
+            if  let jsonObject = response.result.value {
+                print("JSON createplaylist\n\(jsonObject)")
+                
+                let json = JSON(jsonObject)
+                
+                if let id = json["_id"].string {
+                    playlist.id = id
+                    playlist.print_self()
+                    
+                    print("parsing json:")
+                    Playlist(json: json).print_self()
+                    
+                } else {
+                    assert(false, "missing _id field in json")
                 }
                 
-                if  let jsonObject = response.result.value {
-                    print("JSON createplaylist\n\(jsonObject)")
-                    
-                    let json = JSON(jsonObject)
-                    
-                    if let id = json["_id"].string {
-                        playlist.id = id
-                        playlist.print_self()
-                        
-                        print("parsing json:")
-                        Playlist(json: json).print_self()
-                        
-                    } else {
-                        assert(false, "missing _id field in json")
-                    }
-                    
-                    callback()
-                    
-                }
-            })
+                callback()
+                
+            }
+        })
     }
     
     static func makePlaylistUpdateHandler(playlist : Playlist, callback : Void -> Void) -> Response<AnyObject, NSError> -> Void {

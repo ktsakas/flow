@@ -33,8 +33,6 @@ exports.createPlaylist = function(req, res) {
 	console.log('received request to create playlist');
 
 	// Make sure all songs have 0 votes
-	var songs = req.body.songs || [];
-	for (var i = 0; songs[i]; i++) songs[i].votes = 0;
 
 	Playlist.create({
 		name: req.body.name,
@@ -42,7 +40,7 @@ exports.createPlaylist = function(req, res) {
 			name: req.body.userName,
 			id: req.params.userId
 		},
-		songs: songs
+		songs: req.body.songs || []
 	}, function(err, playlist) {
 		if (err) return {
 			error: "Failed to create user!"

@@ -42,4 +42,18 @@ struct Song {
         assert(artist != "", "missing song artist")
     }
 
+    func toDictionary() -> [String:AnyObject] {
+        let dict: [String:AnyObject] = [
+            "name": name,
+            "artist": artist,
+            "voteCount": voteCount,
+            "id": id,
+            "imageLink": imageLink!,
+            "songLink": songLink!
+        ]
+        
+        return dict
+        
+    }
+    
 }
