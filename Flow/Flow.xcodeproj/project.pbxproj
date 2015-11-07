@@ -17,6 +17,7 @@
 		A7D942621BEDB6DB00043823 /* FlowMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942611BEDB6DB00043823 /* FlowMainViewController.swift */; };
 		A7D942641BEDB6FC00043823 /* FlowAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942631BEDB6FC00043823 /* FlowAddViewController.swift */; };
 		A7D942671BEDBA3C00043823 /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942661BEDBA3C00043823 /* FlowViewController.swift */; };
+		A7D942691BEDC91300043823 /* FlowNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */; };
 		DF0FC3FC4EEB2B5DE4FEC114 /* Pods_Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D56284A67237C83E71882 /* Pods_Flow.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		A7D942611BEDB6DB00043823 /* FlowMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowMainViewController.swift; sourceTree = "<group>"; };
 		A7D942631BEDB6FC00043823 /* FlowAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowAddViewController.swift; sourceTree = "<group>"; };
 		A7D942661BEDBA3C00043823 /* FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowNameTableViewCell.swift; sourceTree = "<group>"; };
 		F49D56284A67237C83E71882 /* Pods_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				A7A61AC61BED846200BD8A22 /* AppDelegate.swift */,
 				A7D942651BEDB72000043823 /* ViewControllers */,
 				A7A61ACA1BED846200BD8A22 /* Main.storyboard */,
+				A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */,
 				A7A61ACD1BED846200BD8A22 /* Assets.xcassets */,
 				A7A61ACF1BED846200BD8A22 /* LaunchScreen.storyboard */,
 				A7A61AD21BED846200BD8A22 /* Info.plist */,
@@ -352,6 +355,7 @@
 				A7A61AC91BED846200BD8A22 /* ViewController.swift in Sources */,
 				A7D942671BEDBA3C00043823 /* FlowViewController.swift in Sources */,
 				A7D942641BEDB6FC00043823 /* FlowAddViewController.swift in Sources */,
+				A7D942691BEDC91300043823 /* FlowNameTableViewCell.swift in Sources */,
 				A7A61AC71BED846200BD8A22 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
