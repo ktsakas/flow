@@ -68,11 +68,13 @@ struct FlowNetwork {
     static func createPlaylist(playlist : Playlist, callback : Void -> Void) {
         
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
-        print("createPlaylist path: \(path)")
+        print("createPlaylist (POST) path: \(path)")
         
                 
         let params:[String:AnyObject] = ["name": playlist.name, "songs": [], "userName": playlist.user.name]
-                
+        
+        print("createPlaylist params:\(params)")
+        
         Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
@@ -136,9 +138,9 @@ struct FlowNetwork {
     static func addSong(song : Song, playlist : Playlist, callback : Void -> Void) {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
         
-        print("add song path:\(path)")
+        print("add song (POST) path:\(path)")
         
-//        print("params: \(song.toDictionary())")
+        print("params: \(song.toDictionary())")
         
         Alamofire.request(.POST, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
