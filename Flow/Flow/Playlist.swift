@@ -33,6 +33,15 @@ class Playlist {
         
     }
     
+    func getSongById(songId : String) -> Song {
+        for song in songs {
+            if song.id == songId {
+                return song
+            }
+        }
+        assert(false, "song not found")
+    }
+    
     func isSortedByVoteCount() -> Bool {
         for var i = 0; i < songs.count - 1; i++ {
             if (songs[i].votes < songs[i + 1].votes) {
