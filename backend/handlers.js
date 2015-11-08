@@ -31,6 +31,9 @@ exports.getPlaylistForUser = function(req, res) {
 exports.createPlaylist = function(req, res) {
 	console.log('received request to create playlist');
 
+	console.log(req.body);
+	console.log(req.params);
+
 	// Make sure all songs have 0 votes
 
 	Playlist.create({
@@ -41,13 +44,16 @@ exports.createPlaylist = function(req, res) {
 		},
 		songs: req.body.songs || []
 	}, function(err, playlist) {
-		if (err) return {
-			error: "Failed to create user!"
-		};
+		console.log('hellos', err);
+		if (err) {
+			res.json({
+				error: "Failed to create user!"
+			});
+		} else {
+			console.log('created playlist:', playlist);
+			res.json(playlist);
+		}
 
-		console.log('created playlist:', playlist);
-
-		res.json(playlist);
 		res.end();
 	});
 };
@@ -57,29 +63,31 @@ exports.addSong = function(req, res) {
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
 	}, function(err, playlist) {
-		if (err) return {
-			error: "Failed to add song to playlist!"
-		};
-
-		console.log('adding song to playlist:', playlist);
-
-		var song = req.body;
-		song.votes = 0;
-
-		console.log('song to add:', song);
-		console.log('songs list:', playlist.songs);
-		console.log('type of songs list:', typeof playlist.songs);
-
-		playlist.songs.push(song);
-		playlist.save(function(err) {
-			if (err) return {
-				error: "Failed to add new song!"
-			};
-
-			res.json(playlist);
+		if (err) {
+			res.json({
+				error: "Failed to add song to playlist!"
+			});
 			res.end();
-		});
+		} else {
+			console.log('adding song to playlist:', playlist);
 
+			var song = req.body;
+			song.votes = 0;
+
+			console.log('song to add:', song);
+			console.log('songs list:', playlist.songs);
+			console.log('type of songs list:', typeof playlist.songs);
+
+			playlist.songs.push(song);
+			playlist.save(function(err) {
+				if (err) return {
+					error: "Failed to add new song!"
+				};
+
+				res.json(playlist);
+				res.end();
+			});
+		}
 
 	});
 };
