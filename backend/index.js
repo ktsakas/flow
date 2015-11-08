@@ -19,16 +19,16 @@ app.use(bodyParser.urlencoded({
 // Get all playlists for user
 app.get('/users/:userId/playlists', handlers.getAllPlaylistsForUser);
 
-// Get playlist for user
+// Get playlist for user -- done
 app.get('/users/:userId/playlists/:playlistId', handlers.getPlaylistForUser);
 
-// Create playlist
+// Create playlist -- done
 app.post('/users/:userId/playlists', handlers.createPlaylist);
 
-// add a song to a playlist
+// add a song to a playlist -- done
 app.post('/users/:userId/playlists/:playlistId', handlers.addSong);
 
-// increment the voteCount for a song in a playlist
+// increment the voteCount for a song in a playlist -- done
 app.put('/users/:userId/playlists/:playlistId/songs/:songId', handlers.incrementCount);
 
 app.get('/', function(req, res) {

@@ -60,6 +60,8 @@ exports.createPlaylist = function(req, res) {
 exports.addSong = function(req, res) {
 	console.log('received request to add song', req.params, req.body);
 
+	var song = req.body;
+
 	Playlist.findOne({
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
@@ -72,19 +74,39 @@ exports.addSong = function(req, res) {
 		} else if (playlist) {
 			console.log('adding song to playlist:', playlist);
 
-			var song = req.body;
 			song.votes = 0;
 
 			console.log('song to add:', song);
 			console.log('songs list:', playlist.songs);
 
+
+			var songs = playlist.songs;
+
+			for (var i = 0; i < songs.length; i++) {
+				if (songs[i].id == song.id || 
+					(songs[i].name == song.name && songs[i].artist == song.artist)) {
+					res.json({
+						error: "Song already exists"
+					});
+					res.end();
+					return;
+				}
+			}
+
 			playlist.songs.push(song);
 			playlist.save(function(err) {
-				if (err) return {
-					error: "Failed to add new song!"
-				};
+				if (err) {
+					res.json({
+						error: "Failed to add new song!"
+					});
+				} else {
+					res.json(playlist);
+				}
+				// if (err) return {
+				// 	error: "Failed to add new song!"
+				// };
 
-				res.json(playlist);
+				// res.json(playlist);
 				res.end();
 			});
 		} else {
@@ -109,6 +131,10 @@ exports.incrementCount = function(req, res) {
 		var song = playlist.songs.id(req.params.songId);
 
 		song.votes++;
+
+		playlist.songs.sort(function(s1, s2) {
+			return s2.votes - s1.votes;
+		});
 
 		console.log('after', playlist.songs);
 

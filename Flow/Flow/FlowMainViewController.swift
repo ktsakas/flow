@@ -47,6 +47,10 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
                     FlowNetwork.incrementVoteForSong(self.playlist.songs[0].id, playlist: self.playlist, callback: {
                         print("incremented count for song 2 yay")
                         self.playlist.print_self();
+                        FlowNetwork.incrementVoteForSong(self.playlist.songs[0].id, playlist: self.playlist, callback: {
+                            print("incremented count for song 2 yay")
+                            self.playlist.print_self();
+                        })
                     })
                 })
                 
