@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var models = require('./models.js');
 
 //local modules
 var handlers = require('./handlers.js');

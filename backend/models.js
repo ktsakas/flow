@@ -13,8 +13,11 @@ var UserSchema = exports.UserSchema = mongoose.Schema({
 	id: String
 });
 
-exports.Playlist = mongoose.model('Playlist', {
+var PlaylistSchema = exports.PlaylistSchema = mongoose.Schema({
 	name: String,
 	user: UserSchema,
 	songs: [SongSchema]
 });
+
+
+exports.Playlist = mongoose.model('Playlist', PlaylistSchema);
