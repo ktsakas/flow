@@ -26,6 +26,7 @@
 		A7D9426B1BEDD8CA00043823 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D9426A1BEDD8CA00043823 /* SongTableViewCell.swift */; };
 		A7D9426D1BEDDE0800043823 /* SongStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D9426C1BEDDE0800043823 /* SongStruct.swift */; };
 		A7D9426F1BEDDFAE00043823 /* FlowNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D9426E1BEDDFAE00043823 /* FlowNetwork.swift */; };
+		A7D942711BEEE91800043823 /* FlowMusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942701BEEE91800043823 /* FlowMusicPlayer.swift */; };
 		DF0FC3FC4EEB2B5DE4FEC114 /* Pods_Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49D56284A67237C83E71882 /* Pods_Flow.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		A7D9426A1BEDD8CA00043823 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		A7D9426C1BEDDE0800043823 /* SongStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongStruct.swift; sourceTree = "<group>"; };
 		A7D9426E1BEDDFAE00043823 /* FlowNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowNetwork.swift; sourceTree = "<group>"; };
+		A7D942701BEEE91800043823 /* FlowMusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowMusicPlayer.swift; sourceTree = "<group>"; };
 		F49D56284A67237C83E71882 /* Pods_Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				A7D942651BEDB72000043823 /* ViewControllers */,
 				A7A61ACA1BED846200BD8A22 /* Main.storyboard */,
 				A7D9426E1BEDDFAE00043823 /* FlowNetwork.swift */,
+				A7D942701BEEE91800043823 /* FlowMusicPlayer.swift */,
 				A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */,
 				A7D9426A1BEDD8CA00043823 /* SongTableViewCell.swift */,
 				A7D9426C1BEDDE0800043823 /* SongStruct.swift */,
@@ -390,6 +393,7 @@
 				A7D9426F1BEDDFAE00043823 /* FlowNetwork.swift in Sources */,
 				A7A61AC71BED846200BD8A22 /* AppDelegate.swift in Sources */,
 				A7D9426D1BEDDE0800043823 /* SongStruct.swift in Sources */,
+				A7D942711BEEE91800043823 /* FlowMusicPlayer.swift in Sources */,
 				48C4E1451BEE660D0061BC5B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

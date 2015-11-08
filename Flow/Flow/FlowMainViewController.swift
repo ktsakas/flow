@@ -30,7 +30,12 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        
+
+
+      let musicPlayer = FlowMusicPlayer()
+      musicPlayer.playSong("eminem")
+
+
         
         FlowNetwork.createPlaylist(playlist, callback: {
             print("created playlist yay")
