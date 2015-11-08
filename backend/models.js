@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
-var SongSchema = mongoose.Schema({
+var SongSchema = exports.SongSchema = mongoose.Schema({
 	name: String,
 	artist: String,
 	votes: Number,
 	imageURL: String
 });
 
-var UserSchema = mongoose.Schema({
+var UserSchema = exports.UserSchema = mongoose.Schema({
 	name: String,
 	id: String
 });

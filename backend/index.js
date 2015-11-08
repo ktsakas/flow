@@ -40,3 +40,5 @@ app.get('/', function(req, res) {
 app.listen(port, function() {
   console.log('Server listening on port: %s', port);
 });
+
+module.exports = app;
