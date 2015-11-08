@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SongTableViewCellDelegate {
+  func upvotedSong(finalPlaylist: Int)
+}
+
 class SongTableViewCell: UITableViewCell {
 
   @IBOutlet var songImageView: UIImageView!
@@ -35,16 +39,21 @@ class SongTableViewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
+
   @IBAction func tappedUpvote(sender: AnyObject) {
     print("tapped upvote")
 
-    playlist?
+    playlist!.print_self()
+    print("song id: \(songId!)")
 
+    var songUpvoted : Song = (playlist?.getSongById(songId!))!
+
+    songUpvoted.votes++
+
+    voteCountLabel.text = "\(songUpvoted.votes)"
 
     FlowNetwork.incrementVoteForSong(songId!, playlist: playlist!, callback: {
         print("done incrementing vote")
-
-
         self.playlist!.print_self()
     })
   }

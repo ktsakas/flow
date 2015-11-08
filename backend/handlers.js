@@ -31,6 +31,9 @@ exports.getPlaylistForUser = function(req, res) {
 exports.createPlaylist = function(req, res) {
 	console.log('received request to create playlist');
 
+	console.log(req.body);
+	console.log(req.params);
+
 	// Make sure all songs have 0 votes
 
 	Playlist.create({
@@ -39,52 +42,83 @@ exports.createPlaylist = function(req, res) {
 			name: req.body.userName,
 			id: req.params.userId
 		},
-		songs: req.body.songs || []
+		songs: []
 	}, function(err, playlist) {
-		if (err) return {
-			error: "Failed to create user!"
-		};
+		if (err) {
+			console.log(err);
+			res.json({
+				error: "Failed to create user!"
+			});
+		} else {
+			console.log('created playlist:', playlist);
+			res.json(playlist);
+		}
 
-		console.log('created playlist:', playlist);
-
-		res.json(playlist);
 		res.end();
 	});
 };
 
 exports.addSong = function(req, res) {
+	console.log('received request to add song', req.params, req.body);
+
+	var song = req.body;
+
 	Playlist.findOne({
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
 	}, function(err, playlist) {
-		if (err) return {
-			error: "Failed to add song to playlist!"
-		};
-
-		console.log('adding song to playlist:', playlist);
-
-		var song = req.body;
-		song.votes = 0;
-
-		console.log('song to add:', song);
-		console.log('songs list:', playlist.songs);
-		console.log('type of songs list:', typeof playlist.songs);
-
-		playlist.songs.push(song);
-		playlist.save(function(err) {
-			if (err) return {
-				error: "Failed to add new song!"
-			};
-
-			res.json(playlist);
+		if (err) {
+			res.json({
+				error: "Failed to add song to playlist!"
+			});
 			res.end();
-		});
+		} else if (playlist) {
+			console.log('adding song to playlist:', playlist);
 
+			song.votes = 0;
+
+			console.log('song to add:', song);
+			console.log('songs list:', playlist.songs);
+
+
+			var songs = playlist.songs;
+
+			for (var i = 0; i < songs.length; i++) {
+				if (songs[i].id == song.id || 
+					(songs[i].name == song.name && songs[i].artist == song.artist)) {
+					res.json({
+						error: "Song already exists"
+					});
+					res.end();
+					return;
+				}
+			}
+
+			playlist.songs.push(song);
+			playlist.save(function(err) {
+				if (err) {
+					res.json({
+						error: "Failed to add new song!"
+					});
+				} else {
+					res.json(playlist);
+				}
+				// if (err) return {
+				// 	error: "Failed to add new song!"
+				// };
+
+				// res.json(playlist);
+				res.end();
+			});
+		} else {
+			res.end();
+		}
 
 	});
 };
 
 exports.incrementCount = function(req, res) {
+	console.log('received request to incrementCount', req.params, req.body);
 	Playlist.findOne({
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
@@ -93,15 +127,24 @@ exports.incrementCount = function(req, res) {
 			error: "Could not find the song!"
 		};
 
+		console.log('before', playlist.songs);
+
 		var song = playlist.songs.id(req.params.songId);
+
 		song.votes++;
 
-		song.save(function(err) {
+		playlist.songs.sort(function(s1, s2) {
+			return s2.votes - s1.votes;
+		});
+
+		console.log('after', playlist.songs);
+
+		playlist.save(function(err) {
 			if (err) return {
 				error: "Failed to vote on song!"
 			};
 
-			res.json(song);
+			res.json(playlist);
 			res.end();
 		});
 	});
