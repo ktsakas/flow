@@ -8,11 +8,13 @@ var SongSchema = mongoose.Schema({
 	imageURL: String
 });
 
+var UserSchema = mongoose.Schema({
+	name: String,
+	id: String
+});
+
 exports.Playlist = mongoose.model('Playlist', {
 	name: String,
-	user: {
-		name: String,
-		id: String
-	},
+	user: UserSchema,
 	songs: [SongSchema]
 });

@@ -12,5 +12,5 @@ describe('GET /users/:user/playlists', function(){
 				console.log("what");
 			})
 			.expect(200, done);
-	})
-})
+	});
+});
