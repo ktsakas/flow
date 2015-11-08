@@ -4,6 +4,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 var SongSchema = exports.SongSchema = mongoose.Schema({
 	name: String,
 	artist: String,
+	_id: String,
 	votes: Number,
 	imageLink: String,
 	songLink: String

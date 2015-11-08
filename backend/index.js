@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Get all playlists for user
+// Get all playlists for user -- done
 app.get('/users/:userId/playlists', handlers.getAllPlaylistsForUser);
 
 // Get playlist for user -- done

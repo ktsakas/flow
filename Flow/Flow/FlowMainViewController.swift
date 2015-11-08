@@ -33,33 +33,34 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         FlowNetwork.createPlaylist(playlist, callback: {
             print("created playlist yay")
             
-            FlowNetwork.addSong(Song(id: "song1", name: "song1", artist: "_", votes: 0, imageLink: "_", songLink: "_"), playlist: self.playlist, callback: {
-                
-                print("added song yay")
-                self.playlist.print_self()
-                
+            let song1 = Song(id: "song1", name: "song1", artist: "_", votes: 0, imageLink: "_", songLink: "_")
+            
+            FlowNetwork.addSong(song1, playlist: self.playlist, callback: {
+                                
                 let song2 = Song(id: "song2", name: "song2", artist: "_", votes: 0, imageLink: "_", songLink: "_")
                 
                 FlowNetwork.addSong(song2, playlist: self.playlist, callback: {
-                    print("added another song yay")
                     self.playlist.print_self()
                     
-                    FlowNetwork.incrementVoteForSong(self.playlist.songs[0].id, playlist: self.playlist, callback: {
-                        print("incremented count for song 2 yay")
-                        self.playlist.print_self();
-                        FlowNetwork.incrementVoteForSong(self.playlist.songs[0].id, playlist: self.playlist, callback: {
-                            print("incremented count for song 2 yay")
-                            self.playlist.print_self();
+                    let song1id = self.playlist.songs[0].id
+                    let song2id = self.playlist.songs[1].id
+                    
+                    print("song1id: \(song1id), song2id: \(song2id)")
+                    
+                    FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
+                        FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
+                            FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+                                FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+                                    FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+                                        self.playlist.print_self();
+                                    })
+                                })
+                            })
                         })
                     })
                 })
-                
             })
-            
         })
-        
-        
-        
     }
     
     override func didReceiveMemoryWarning() {

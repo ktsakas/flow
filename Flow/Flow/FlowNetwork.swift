@@ -15,19 +15,15 @@ let apiUrl = "https://flow-backend-api.herokuapp.com"
 struct FlowNetwork {
     static func getPlaylistsForUserId(id : String, callback: Array<Playlist> -> Void) {
         let path = "\(apiUrl)/users/\(id)/playlists"
-        print("path for getplaylists:\(path)")
-        
         Alamofire.request(.GET, path)
             .responseJSON(completionHandler: { response in
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle it
                     print("error calling GET on \(path)")
-                    print(response.result.error!)
                     return
                 }
                 
                 if  let jsonObject = response.result.value {
-                    print("JSON for getPlaylists \(jsonObject)")
                     
                     let json = JSON(jsonObject)
                     
@@ -40,15 +36,6 @@ struct FlowNetwork {
                     }
                 }
             })
-    }
-    
-    static func getSongsForPlaylistId(id : String) -> Array<Song> {
-        
-        let songArray = Array<Song>()
-        // TODO: actual networking with AlamoFire & Parsing with SwiftyJSON
-        
-        
-        return songArray;
     }
     
     static func getFakeSongs() -> Array<Song> {
@@ -67,23 +54,17 @@ struct FlowNetwork {
     static func createPlaylist(playlist : Playlist, callback : Void -> Void) {
         
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists"
-        print("createPlaylist (POST) path: \(path)")
-        
                 
         let params:[String:AnyObject] = ["name": playlist.name, "songs": [], "userName": playlist.user.name]
-        
-        print("createPlaylist params:\(params)")
         
         Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
                 print("error calling POST on \(path)")
-                print(response.result.error!)
                 return
             }
             
             if  let jsonObject = response.result.value {
-//                print("JSON createplaylist\n\(jsonObject)")
                 
                 let json = JSON(jsonObject)
                 
@@ -103,14 +84,11 @@ struct FlowNetwork {
         return { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
-                print("errorksjhgklsh")
-                print(response.result.error!)
+                print("error getting updated playlist")
                 return
             }
 
             if let jsonObject = response.result.value {
-                
-                print("JSON: \(jsonObject)")
                 
                 playlist.getSongsFromJson(JSON(jsonObject))
                 
@@ -121,14 +99,12 @@ struct FlowNetwork {
     
     static func updatePlaylist(playlist : Playlist, callback : Void -> Void) {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
-        print("updatePlaylist path: \(path)")
         Alamofire.request(.GET, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
     }
     
     static func incrementVoteForSong(songId : String, playlist : Playlist, callback : Void -> Void) {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)"
-        print("increment path:\(path)")
         Alamofire.request(.PUT, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
@@ -137,21 +113,14 @@ struct FlowNetwork {
     static func addSong(song : Song, playlist : Playlist, callback : Void -> Void) {
         let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
         
-        print("add song (POST) path:\(path)")
-        
-        print("params: \(song.toDictionary())")
-        
         Alamofire.request(.POST, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
                 print("error calling GET on /posts/1")
-                print(response.result.error!)
                 return
             }
         
             if let jsonObject = response.result.value {
-                
-//                print("JSON: \(jsonObject)")
                 
                 playlist.getSongsFromJson(JSON(jsonObject))
                 
