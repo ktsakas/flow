@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlowViewController: UIViewController {
+class GeneralFlowViewController: UIViewController {
 
   let flowNames = ["Join Valentin's Flow", "Create Flow"]
 

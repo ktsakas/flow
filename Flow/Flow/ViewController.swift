@@ -22,6 +22,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     tableView.delegate = self
     tableView.reloadData()
     // Do any additional setup after loading the view.
+
+
+    let loginButton = FBSDKLoginButton()
+    loginButton.center = self.view.center
+    self.view.addSubview(loginButton)
+
+//    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    // Optional: Place the button in the center of your view.
+  //  loginButton.center = self.view.center;
+   // [self.view addSubview:loginButton];
   }
 
   override func didReceiveMemoryWarning() {
