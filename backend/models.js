@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost');
 
-var Song = exports.Song = mongoose.model('Song', {
+var SongSchema = mongoose.Schema({
 	name: String,
 	artist: String,
 	votes: Number,
@@ -14,5 +14,5 @@ exports.Playlist = mongoose.model('Playlist', {
 		name: String,
 		id: String
 	},
-	songs: [Song]
+	songs: [SongSchema]
 });

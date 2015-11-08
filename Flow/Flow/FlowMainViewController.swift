@@ -44,12 +44,12 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
             
         })
         
-        FlowNetwork.getPlaylistsForUserId("id2", callback: { playlists in
-            print("got playlists yay")
-            for playlist in playlists {
-                playlist.print_self()
-            }
-        })
+//        FlowNetwork.getPlaylistsForUserId("id2", callback: { playlists in
+//            print("got playlists yay")
+//            for playlist in playlists {
+//                playlist.print_self()
+//            }
+//        })
         
         
     }

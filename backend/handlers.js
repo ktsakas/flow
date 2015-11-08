@@ -1,6 +1,5 @@
 var models = require('./models.js');
 var Playlist = models.Playlist;
-var Song = models.Song;
 
 
 exports.getAllPlaylistsForUser = function(req, res) {
@@ -62,8 +61,16 @@ exports.addSong = function(req, res) {
 			error: "Failed to add song to playlist!"
 		};
 
+		console.log('adding song to playlist:', playlist);
+
 		var song = req.body;
 		song.votes = 0;
+
+		console.log('song to add:', song);
+		console.log('songs list:', playlist.songs);
+		console.log('type of songs list:', typeof playlist.songs);
+
+		playlist.songs = [];
 		playlist.songs.push(song);
 		playlist.save(function(err) {
 			if (err) return {

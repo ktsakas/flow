@@ -25,7 +25,7 @@ app.get('/users/:userId/playlists/:playlistId', handlers.getPlaylistForUser);
 app.post('/users/:userId/playlists', handlers.createPlaylist);
 
 // add a song to a playlist
-app.put('/users/:userId/playlists/:playlistId', handlers.addSong);
+app.post('/users/:userId/playlists/:playlistId', handlers.addSong);
 
 // increment the voteCount for a song in a playlist
 app.put('/users/:userId/playlists/:playlistId/songs/:songId', handlers.incrementCount);

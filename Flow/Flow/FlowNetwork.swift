@@ -137,13 +137,13 @@ struct FlowNetwork {
     }
     
     static func addSong(song : Song, playlist : Playlist, callback : Void -> Void) {
-        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(song.id)"
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)"
         
         print("add song path:\(path)")
         
         print("params: \(song.toDictionary())")
         
-        Alamofire.request(.PUT, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
+        Alamofire.request(.POST, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
                 print("error calling GET on /posts/1")
