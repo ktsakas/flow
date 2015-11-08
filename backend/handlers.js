@@ -70,7 +70,6 @@ exports.addSong = function(req, res) {
 		console.log('songs list:', playlist.songs);
 		console.log('type of songs list:', typeof playlist.songs);
 
-		playlist.songs = [];
 		playlist.songs.push(song);
 		playlist.save(function(err) {
 			if (err) return {

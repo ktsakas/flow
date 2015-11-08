@@ -7,7 +7,6 @@ describe('GET /users/:user/playlists', function(){
 		request(app)
 			.get('/users/ktsakas/playlists')
 			.set('Accept', 'application/json')
-			.expect('Content-Type', /json/)
 			.expect(function (res) {
 				console.log("what");
 			})
