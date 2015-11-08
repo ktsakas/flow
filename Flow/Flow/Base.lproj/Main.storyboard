@@ -26,6 +26,12 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="xU8-BD-9yB">
+                                    <rect key="frame" x="0.0" y="180" width="600" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="flowCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="flowCell" rowHeight="76" id="cBR-7U-64a" customClass="FlowNameTableViewCell" customModule="Flow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="76"/>
@@ -159,7 +165,7 @@
                                 <animations/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v2l-y5-Dzn">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="479"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -253,7 +259,7 @@
                             <constraint firstItem="v2l-y5-Dzn" firstAttribute="top" secondItem="Gt0-rj-Pgv" secondAttribute="bottom" id="K0V-7N-pmA"/>
                             <constraint firstAttribute="trailing" secondItem="UAM-yM-Vm5" secondAttribute="trailing" id="Won-q8-lg0"/>
                             <constraint firstItem="v2l-y5-Dzn" firstAttribute="leading" secondItem="kzc-6e-rFr" secondAttribute="leading" id="d20-DA-R5A"/>
-                            <constraint firstItem="L7y-KD-Ijb" firstAttribute="top" secondItem="v2l-y5-Dzn" secondAttribute="bottom" id="ihM-IA-s70"/>
+                            <constraint firstItem="L7y-KD-Ijb" firstAttribute="top" secondItem="v2l-y5-Dzn" secondAttribute="bottom" constant="57" id="ihM-IA-s70"/>
                             <constraint firstItem="UAM-yM-Vm5" firstAttribute="leading" secondItem="kzc-6e-rFr" secondAttribute="leading" id="p5R-Km-tVM"/>
                         </constraints>
                     </view>

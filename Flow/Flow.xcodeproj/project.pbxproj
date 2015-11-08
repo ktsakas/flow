@@ -21,7 +21,7 @@
 		A7A61AE71BED846300BD8A22 /* FlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A61AE61BED846300BD8A22 /* FlowUITests.swift */; };
 		A7D942621BEDB6DB00043823 /* FlowMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942611BEDB6DB00043823 /* FlowMainViewController.swift */; };
 		A7D942641BEDB6FC00043823 /* FlowAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942631BEDB6FC00043823 /* FlowAddViewController.swift */; };
-		A7D942671BEDBA3C00043823 /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942661BEDBA3C00043823 /* FlowViewController.swift */; };
+		A7D942671BEDBA3C00043823 /* GeneralFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942661BEDBA3C00043823 /* GeneralFlowViewController.swift */; };
 		A7D942691BEDC91300043823 /* FlowNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */; };
 		A7D9426B1BEDD8CA00043823 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D9426A1BEDD8CA00043823 /* SongTableViewCell.swift */; };
 		A7D9426D1BEDDE0800043823 /* SongStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D9426C1BEDDE0800043823 /* SongStruct.swift */; };
@@ -70,7 +70,7 @@
 		A7A61AE81BED846300BD8A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7D942611BEDB6DB00043823 /* FlowMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowMainViewController.swift; sourceTree = "<group>"; };
 		A7D942631BEDB6FC00043823 /* FlowAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowAddViewController.swift; sourceTree = "<group>"; };
-		A7D942661BEDBA3C00043823 /* FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		A7D942661BEDBA3C00043823 /* GeneralFlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralFlowViewController.swift; sourceTree = "<group>"; };
 		A7D942681BEDC91300043823 /* FlowNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowNameTableViewCell.swift; sourceTree = "<group>"; };
 		A7D9426A1BEDD8CA00043823 /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		A7D9426C1BEDDE0800043823 /* SongStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongStruct.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A61AC81BED846200BD8A22 /* ViewController.swift */,
-				A7D942661BEDBA3C00043823 /* FlowViewController.swift */,
+				A7D942661BEDBA3C00043823 /* GeneralFlowViewController.swift */,
 				A7D942611BEDB6DB00043823 /* FlowMainViewController.swift */,
 				A7D942631BEDB6FC00043823 /* FlowAddViewController.swift */,
 			);
@@ -383,7 +383,7 @@
 				48C4E1431BEE56590061BC5B /* Playlist.swift in Sources */,
 				A7D942621BEDB6DB00043823 /* FlowMainViewController.swift in Sources */,
 				A7A61AC91BED846200BD8A22 /* ViewController.swift in Sources */,
-				A7D942671BEDBA3C00043823 /* FlowViewController.swift in Sources */,
+				A7D942671BEDBA3C00043823 /* GeneralFlowViewController.swift in Sources */,
 				A7D9426B1BEDD8CA00043823 /* SongTableViewCell.swift in Sources */,
 				A7D942641BEDB6FC00043823 /* FlowAddViewController.swift in Sources */,
 				A7D942691BEDC91300043823 /* FlowNameTableViewCell.swift in Sources */,

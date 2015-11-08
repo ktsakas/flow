@@ -82,17 +82,12 @@ struct FlowNetwork {
             }
             
             if  let jsonObject = response.result.value {
-                print("JSON createplaylist\n\(jsonObject)")
+//                print("JSON createplaylist\n\(jsonObject)")
                 
                 let json = JSON(jsonObject)
                 
                 if let id = json["_id"].string {
                     playlist.id = id
-                    playlist.print_self()
-                    
-                    print("parsing json:")
-                    Playlist(json: json).print_self()
-                    
                 } else {
                     assert(false, "missing _id field in json")
                 }
@@ -107,7 +102,7 @@ struct FlowNetwork {
         return { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
-                print("error calling GET on /posts/1")
+                print("errorksjhgklsh")
                 print(response.result.error!)
                 return
             }
@@ -131,7 +126,9 @@ struct FlowNetwork {
     }
     
     static func incrementVoteForSong(songId : String, playlist : Playlist, callback : Void -> Void) {
-        Alamofire.request(.POST, "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)")
+        let path = "\(apiUrl)/users/\(playlist.user.id)/playlists/\(playlist.id)/songs/\(songId)"
+        print("increment path:\(path)")
+        Alamofire.request(.PUT, path)
             .responseJSON(completionHandler: makePlaylistUpdateHandler(playlist, callback: callback))
         
     }
@@ -141,7 +138,7 @@ struct FlowNetwork {
         
         print("add song path:\(path)")
         
-        print("params: \(song.toDictionary())")
+//        print("params: \(song.toDictionary())")
         
         Alamofire.request(.POST, path, parameters: song.toDictionary()).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
@@ -153,7 +150,7 @@ struct FlowNetwork {
         
             if let jsonObject = response.result.value {
                 
-                print("JSON: \(jsonObject)")
+//                print("JSON: \(jsonObject)")
                 
                 playlist.getSongsFromJson(JSON(jsonObject))
                 

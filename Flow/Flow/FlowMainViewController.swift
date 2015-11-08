@@ -20,13 +20,11 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         // create playlist broaugh
-        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id2"), id: "playlistId1")
+        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id3"), id: "playlistId1")
         
         
         playlist.songs = FlowNetwork.getFakeSongs()
-        
-        playlist.print_self()
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -40,16 +38,22 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
                 print("added song yay")
                 self.playlist.print_self()
                 
+                let song2 = Song(id: "song2", name: "song2", artist: "_", voteCount: 0, imageLink: "_", songLink: "_")
+                
+                FlowNetwork.addSong(song2, playlist: self.playlist, callback: {
+                    print("added another song yay")
+                    self.playlist.print_self()
+                    
+                    FlowNetwork.incrementVoteForSong("song2", playlist: self.playlist, callback: {
+                        print("incremented count for song 2 yay")
+                        self.playlist.print_self();
+                    })
+                })
+                
             })
             
         })
         
-//        FlowNetwork.getPlaylistsForUserId("id2", callback: { playlists in
-//            print("got playlists yay")
-//            for playlist in playlists {
-//                playlist.print_self()
-//            }
-//        })
         
         
     }

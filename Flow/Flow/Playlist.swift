@@ -63,7 +63,7 @@ class Playlist {
                 songs.append(Song(json: songJson))
             }
             assert(isSortedByVoteCount(), "songs array is not sorted by vote count")
-            assert(!containsDuplicates(), "songs array contains duplicate songs")
+//            assert(!containsDuplicates(), "songs array contains duplicate songs")
         } else {
             print(json["songs"])
             assert(false, "json object is not an array")
