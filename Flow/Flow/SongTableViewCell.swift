@@ -35,7 +35,8 @@ class SongTableViewCell: UITableViewCell {
 
   @IBAction func tappedUpvote(sender: AnyObject) {
     print("tapped upvote")
-
+    playlist!.print_self()
+    print("song id: \(songId!)")
     FlowNetwork.incrementVoteForSong(songId!, playlist: playlist!, callback: {
         print("done incrementing vote")
         self.playlist!.print_self()

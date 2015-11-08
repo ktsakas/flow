@@ -57,6 +57,9 @@ struct FlowNetwork {
                 
         let params:[String:AnyObject] = ["name": playlist.name, "songs": [], "userName": playlist.user.name]
         
+        print(path)
+        print(params)
+        
         Alamofire.request(.POST, path, parameters: params).responseJSON(completionHandler: { response in
             guard response.result.error == nil else {
                 // got an error in getting the data, need to handle it
@@ -127,5 +130,19 @@ struct FlowNetwork {
                 callback()
             }
         })
+    }
+    
+    static func addSongs(playlist: Playlist, songs : Array<Song>, i : Int, callback : Void -> Void) {
+        playlist.print_self()
+        if (i < songs.count) {
+            FlowNetwork.addSong(songs[i], playlist: playlist, callback: {
+                addSongs(playlist, songs: songs, i: i + 1, callback: callback)
+            })
+        } else {
+            print("done:")
+            playlist.print_self()
+            callback()
+        }
+        
     }
 }

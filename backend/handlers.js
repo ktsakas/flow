@@ -42,9 +42,10 @@ exports.createPlaylist = function(req, res) {
 			name: req.body.userName,
 			id: req.params.userId
 		},
-		songs: req.body.songs || []
+		songs: []
 	}, function(err, playlist) {
 		if (err) {
+			console.log(err);
 			res.json({
 				error: "Failed to create user!"
 			});

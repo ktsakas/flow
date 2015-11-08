@@ -12,55 +12,61 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let songCellID = "songCell"
     
-    var playlist = Playlist(name: "_", user: User(name: "_", id: "_"), id: "_")
+    var playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id7"), id: "playlistId1")
     
     @IBOutlet var tableView: UITableView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // create playlist broaugh
-        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id7"), id: "playlistId1")
+        //        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id7"), id: "playlistId1")
         
-        
-        playlist.songs = FlowNetwork.getFakeSongs()
-                
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.reloadData()
-        
         
         FlowNetwork.createPlaylist(playlist, callback: {
-            print("created playlist yay")
-            
-            let song1 = Song(id: "song1", name: "song1", artist: "_", votes: 0, imageLink: "_", songLink: "_")
-            
-            FlowNetwork.addSong(song1, playlist: self.playlist, callback: {
-                                
-                let song2 = Song(id: "song2", name: "song2", artist: "_", votes: 0, imageLink: "_", songLink: "_")
-                
-                FlowNetwork.addSong(song2, playlist: self.playlist, callback: {
-                    self.playlist.print_self()
-                    
-                    let song1id = self.playlist.songs[0].id
-                    let song2id = self.playlist.songs[1].id
-                    
-                    print("song1id: \(song1id), song2id: \(song2id)")
-                    
-                    FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
-                        FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
-                            FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
-                                FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
-                                    FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
-                                        self.playlist.print_self();
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            FlowNetwork.addSongs(self.playlist, songs: FlowNetwork.getFakeSongs(), i: 0, callback: {
+                self.tableView.reloadData()
             })
         })
+                
+
+//        tableView.reloadData()
+        
+        
+        //        FlowNetwork.createPlaylist(playlist, callback: {
+        //            print("created playlist yay")
+        //
+        //            let song1 = Song(id: "song1", name: "song1", artist: "_", votes: 0, imageLink: "_", songLink: "_")
+        //
+        //            FlowNetwork.addSong(song1, playlist: self.playlist, callback: {
+        //
+        //                let song2 = Song(id: "song2", name: "song2", artist: "_", votes: 0, imageLink: "_", songLink: "_")
+        //
+        //                FlowNetwork.addSong(song2, playlist: self.playlist, callback: {
+        //                    self.playlist.print_self()
+        //
+        //                    let song1id = self.playlist.songs[0].id
+        //                    let song2id = self.playlist.songs[1].id
+        //
+        //                    print("song1id: \(song1id), song2id: \(song2id)")
+        //
+        //                    FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
+        //                        FlowNetwork.incrementVoteForSong(song1id, playlist: self.playlist, callback: {
+        //                            FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+        //                                FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+        //                                    FlowNetwork.incrementVoteForSong(song2id, playlist: self.playlist, callback: {
+        //                                        self.playlist.print_self();
+        //                                    })
+        //                                })
+        //                            })
+        //                        })
+        //                    })
+        //                })
+        //            })
+        //        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,6 +89,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let songCell : SongTableViewCell = tableView.dequeueReusableCellWithIdentifier(songCellID, forIndexPath: indexPath) as! SongTableViewCell
         
+        print(indexPath.row)
         
         let song : Song = playlist.songs[indexPath.row]
         songCell.songTitleLabel.text = song.name
@@ -102,7 +109,9 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
+        if (playlist.songs.count == 0) {
+            return 0
+        } else if (section == 0) {
             return 1 // the one currently playing
         } else {
             return playlist.songs.count - 1 // all the others.
