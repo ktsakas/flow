@@ -48,7 +48,7 @@ struct Song {
             "name": name,
             "artist": artist,
             "votes": votes,
-            "id": id,
+            "_id": id,
             "imageLink": imageLink!,
             "songLink": songLink!
         ]
