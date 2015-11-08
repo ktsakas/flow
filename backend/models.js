@@ -5,7 +5,8 @@ var SongSchema = exports.SongSchema = mongoose.Schema({
 	name: String,
 	artist: String,
 	votes: Number,
-	imageURL: String
+	imageLink: String,
+	songLink: String
 });
 
 var UserSchema = exports.UserSchema = mongoose.Schema({

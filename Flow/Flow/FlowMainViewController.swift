@@ -20,7 +20,7 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         // create playlist broaugh
-        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id3"), id: "playlistId1")
+        playlist = Playlist(name: "Valentin's Flow", user: User(name: "Valentin", id:"id6"), id: "playlistId1")
         
         
         playlist.songs = FlowNetwork.getFakeSongs()
@@ -33,18 +33,18 @@ class FlowMainViewController: UIViewController, UITableViewDataSource, UITableVi
         FlowNetwork.createPlaylist(playlist, callback: {
             print("created playlist yay")
             
-            FlowNetwork.addSong(Song(id: "song1", name: "song1", artist: "_", voteCount: 0, imageLink: "_", songLink: "_"), playlist: self.playlist, callback: {
+            FlowNetwork.addSong(Song(id: "song1", name: "song1", artist: "_", votes: 0, imageLink: "_", songLink: "_"), playlist: self.playlist, callback: {
                 
                 print("added song yay")
                 self.playlist.print_self()
                 
-                let song2 = Song(id: "song2", name: "song2", artist: "_", voteCount: 0, imageLink: "_", songLink: "_")
+                let song2 = Song(id: "song2", name: "song2", artist: "_", votes: 0, imageLink: "_", songLink: "_")
                 
                 FlowNetwork.addSong(song2, playlist: self.playlist, callback: {
                     print("added another song yay")
                     self.playlist.print_self()
                     
-                    FlowNetwork.incrementVoteForSong("song2", playlist: self.playlist, callback: {
+                    FlowNetwork.incrementVoteForSong(self.playlist.songs[0].id, playlist: self.playlist, callback: {
                         print("incremented count for song 2 yay")
                         self.playlist.print_self();
                     })

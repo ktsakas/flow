@@ -35,7 +35,7 @@ class Playlist {
     
     func isSortedByVoteCount() -> Bool {
         for var i = 0; i < songs.count - 1; i++ {
-            if (songs[i].voteCount < songs[i + 1].voteCount) {
+            if (songs[i].votes < songs[i + 1].votes) {
                 return false
             }
         }
@@ -73,7 +73,7 @@ class Playlist {
     func print_self() {
         print("\nPLAYLIST: name: \(name), user: \(user), id: \(id)")
         for song in songs {
-            print("  id: \(song.id), name: \(song.name), artist: \(song.artist), voteCount: \(song.voteCount)")
+            print("  id: \(song.id), name: \(song.name), artist: \(song.artist), voteCount: \(song.votes)")
         }
         print("END_PLAYLIST\n")
         

@@ -56,8 +56,7 @@ struct FlowNetwork {
         var songsArray = Array<Song>()
         
         for i in 0...5 {
-            let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)",
-                voteCount: 5-i, imageLink: "link.com", songLink: "link.com")
+            let song = Song(id: "id\(i)", name: "song\(i)", artist: "artist\(i)", votes: 5-i, imageLink: "link.com", songLink: "link.com")
             songsArray.append(song)
         }
         

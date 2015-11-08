@@ -44,7 +44,6 @@ exports.createPlaylist = function(req, res) {
 		},
 		songs: req.body.songs || []
 	}, function(err, playlist) {
-		console.log('hellos', err);
 		if (err) {
 			res.json({
 				error: "Failed to create user!"
@@ -59,6 +58,8 @@ exports.createPlaylist = function(req, res) {
 };
 
 exports.addSong = function(req, res) {
+	console.log('received request to add song', req.params, req.body);
+
 	Playlist.findOne({
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
@@ -68,7 +69,7 @@ exports.addSong = function(req, res) {
 				error: "Failed to add song to playlist!"
 			});
 			res.end();
-		} else {
+		} else if (playlist) {
 			console.log('adding song to playlist:', playlist);
 
 			var song = req.body;
@@ -76,7 +77,6 @@ exports.addSong = function(req, res) {
 
 			console.log('song to add:', song);
 			console.log('songs list:', playlist.songs);
-			console.log('type of songs list:', typeof playlist.songs);
 
 			playlist.songs.push(song);
 			playlist.save(function(err) {
@@ -87,12 +87,15 @@ exports.addSong = function(req, res) {
 				res.json(playlist);
 				res.end();
 			});
+		} else {
+			res.end();
 		}
 
 	});
 };
 
 exports.incrementCount = function(req, res) {
+	console.log('received request to incrementCount', req.params, req.body);
 	Playlist.findOne({
 		_id: req.params.playlistId,
 		'user.id': req.params.userId
@@ -101,15 +104,20 @@ exports.incrementCount = function(req, res) {
 			error: "Could not find the song!"
 		};
 
+		console.log('before', playlist.songs);
+
 		var song = playlist.songs.id(req.params.songId);
+
 		song.votes++;
 
-		song.save(function(err) {
+		console.log('after', playlist.songs);
+
+		playlist.save(function(err) {
 			if (err) return {
 				error: "Failed to vote on song!"
 			};
 
-			res.json(song);
+			res.json(playlist);
 			res.end();
 		});
 	});

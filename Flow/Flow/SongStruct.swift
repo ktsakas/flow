@@ -15,15 +15,15 @@ struct Song {
     var id: String
     var name: String
     var artist: String
-    var voteCount:Int = 0
+    var votes:Int = 0
     var imageLink: String?
     var songLink: String?
     
     
-    init(id: String, name: String, artist: String, voteCount: Int, imageLink: String?, songLink: String?) {
+    init(id: String, name: String, artist: String, votes: Int, imageLink: String?, songLink: String?) {
         self.name = name
         self.artist = artist
-        self.voteCount = voteCount
+        self.votes = votes
         self.id = id;
         self.imageLink = imageLink
         self.songLink = songLink;
@@ -31,13 +31,14 @@ struct Song {
     
     init(json: JSON) {
         self.init(
-            id: json["id"].stringValue,
+            id: json["_id"].stringValue,
             name: json["name"].stringValue,
             artist: json["artist"].stringValue,
-            voteCount: json["voteCount"].intValue,
+            votes: json["votes"].intValue,
             imageLink: json["imageLink"].string,
             songLink: json["songLink"].string)
         
+        assert(id != "", "missing song id")
         assert(name != "", "missing song name")
         assert(artist != "", "missing song artist")
     }
@@ -46,7 +47,7 @@ struct Song {
         let dict: [String:AnyObject] = [
             "name": name,
             "artist": artist,
-            "voteCount": voteCount,
+            "votes": votes,
             "id": id,
             "imageLink": imageLink!,
             "songLink": songLink!
